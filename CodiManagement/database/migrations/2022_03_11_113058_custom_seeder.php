@@ -72,6 +72,21 @@ class CustomSeeder extends Migration
             array("attendance_date"=>"2021-03-21"), 
         );
 
+        $user_attendances = array(
+            array("user_id"=>1,"admin_id"=>"1","attendance_id"=>"1","present_absent"=>"1","excuse"=>"0","attendance_key_amount"=>"10","comment"=>"No comment"),
+            array("user_id"=>1,"admin_id"=>"1","attendance_id"=>"2","present_absent"=>"1","excuse"=>"0","attendance_key_amount"=>"10","comment"=>"No comment"),
+            array("user_id"=>1,"admin_id"=>"1","attendance_id"=>"3","present_absent"=>"0","excuse"=>"1","attendance_key_amount"=>"0","comment"=>"No comment"),
+            array("user_id"=>1,"admin_id"=>"1","attendance_id"=>"4","present_absent"=>"1","excuse"=>"0","attendance_key_amount"=>"10","comment"=>"No comment"),
+            array("user_id"=>1,"admin_id"=>"1","attendance_id"=>"5","present_absent"=>"1","excuse"=>"0","attendance_key_amount"=>"10","comment"=>"No comment"),
+            array("user_id"=>2,"admin_id"=>"1","attendance_id"=>"1","present_absent"=>"1","excuse"=>"0","attendance_key_amount"=>"10","comment"=>"No comment"),
+            array("user_id"=>2,"admin_id"=>"1","attendance_id"=>"2","present_absent"=>"1","excuse"=>"0","attendance_key_amount"=>"10","comment"=>"No comment"),
+            array("user_id"=>2,"admin_id"=>"1","attendance_id"=>"3","present_absent"=>"0","excuse"=>"1","attendance_key_amount"=>"0","comment"=>"No comment"),
+            array("user_id"=>2,"admin_id"=>"1","attendance_id"=>"4","present_absent"=>"0","excuse"=>"0","attendance_key_amount"=>"0","comment"=>"No comment"),
+            array("user_id"=>2,"admin_id"=>"1","attendance_id"=>"5","present_absent"=>"1","excuse"=>"0","attendance_key_amount"=>"10","comment"=>"No comment"),
+            
+           
+        );
+
         $users = array(
             array(
             "cohort_code"=>2,
@@ -350,6 +365,7 @@ class CustomSeeder extends Migration
         
 
         DB::table('user__absence__requests')->insert($user__absence__requests);
+        DB::table('user_attendances')->insert($user_attendances);
         DB::table('attendances')->insert($attendances);
         DB::table('branches')->insert($branches);
         DB::table('cohorts')->insert($cohorts);
