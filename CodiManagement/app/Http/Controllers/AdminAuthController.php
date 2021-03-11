@@ -17,7 +17,7 @@ class AdminAuthController extends Controller
              'role_id'  => $request->role_id,
              'branch_id'=> $request->branch_id,
              'description'=>$request->description,
-             'active_inactive'=>$request->active_inactive,
+             'active_inactive'=>1,
 
 
          ]);
