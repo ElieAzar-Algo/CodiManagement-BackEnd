@@ -4,13 +4,15 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Cohort extends Model
+class Stage extends Model
 {
-    protected $table = "cohorts";
+    protected $table="stages";
     protected $fillable=[
-        'branch_id',
         'cohort_code',
+        'prairie',
+        'stage_name',
         'start_date',
         'end_date',
+        'active_inactive'
     ];
 }

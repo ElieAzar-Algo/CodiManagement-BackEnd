@@ -36,6 +36,16 @@ class CustomSeeder extends Migration
             array("role_id"=>2,"branch_id"=>"2","full_name"=>"Nermine Noor","username"=>"Nermine","email"=>"Nermine@mail.com","password"=>bcrypt("1234"),"description"=>"React Native Practitioner, Mobile App developer","active_inactive"=>"1"),
         );
 
+        $stages = array(
+            array("cohort_code"=>1,"prairie"=>"1","stage_name"=>"Prairie","start_date"=>"2021-04-01","end_date"=>"2021-06-01","active_inactive"=>"1"),
+            array("cohort_code"=>2,"prairie"=>"1","stage_name"=>"Prairie","start_date"=>"2020-09-01","end_date"=>"2020-11-01","active_inactive"=>"0"),
+            array("cohort_code"=>2,"prairie"=>"0","stage_name"=>"Project 1","start_date"=>"2020-11-01","end_date"=>"2020-12-01","active_inactive"=>"0"),
+            array("cohort_code"=>2,"prairie"=>"0","stage_name"=>"Project 2","start_date"=>"2020-12-01","end_date"=>"2021-02-01","active_inactive"=>"0"),
+            array("cohort_code"=>2,"prairie"=>"0","stage_name"=>"Project 3","start_date"=>"2021-02-01","end_date"=>"2021-03-01","active_inactive"=>"0"),
+            array("cohort_code"=>2,"prairie"=>"0","stage_name"=>"Final_project","start_date"=>"2021-03-01","end_date"=>"2021-04-01","active_inactive"=>"1"),
+           
+        );
+
         $users = array(
             array(
             "cohort_code"=>2,
@@ -315,6 +325,7 @@ class CustomSeeder extends Migration
         DB::table('branches')->insert($branches);
         DB::table('cohorts')->insert($cohorts);
         DB::table('admins')->insert($admins);
+        DB::table('stages')->insert($stages);
         DB::table('users')->insert($users);
     }
 
