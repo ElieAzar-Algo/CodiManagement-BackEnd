@@ -43,8 +43,8 @@ class StageValidator extends FormRequest
             'end_date.required' => 'End Date is required',
             'active_inactive.required' => 'Choosing if this stage is active or not is required',
 
-            'start_date.required' => 'Start date should be a date',
-            'end_date.required' => 'End Date should be a date',
+            'start_date.date' => 'Start date should be a date',
+            'end_date.date' => 'End Date should be a date',
             'end_date.after:start_date' => 'End Date should be after the start date',
         ];
     }

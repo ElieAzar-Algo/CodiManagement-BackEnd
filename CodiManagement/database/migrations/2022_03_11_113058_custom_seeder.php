@@ -13,7 +13,12 @@ class CustomSeeder extends Migration
      */
     public function up()
     {
-        
+        $roles = array(
+            array("role"=>"mentor"),
+            array("role"=>"team member"),
+            array("role"=>"director"), 
+        );
+
         $branches = array(
             array("branch_name"=>"Beirut","branch_country"=>"Lebanon","branch_location"=>"Gemmayze"),
             array("branch_name"=>"Tripoli","branch_country"=>"Lebanon","branch_location"=>"Tripoli"),
@@ -44,6 +49,27 @@ class CustomSeeder extends Migration
             array("cohort_code"=>2,"prairie"=>"0","stage_name"=>"Project 3","start_date"=>"2021-02-01","end_date"=>"2021-03-01","active_inactive"=>"0"),
             array("cohort_code"=>2,"prairie"=>"0","stage_name"=>"Final_project","start_date"=>"2021-03-01","end_date"=>"2021-04-01","active_inactive"=>"1"),
            
+        );
+
+        $user__absence__requests = array(
+            array("user_id"=>1,"absence_reason"=>"Sick reason","absence_requested_date"=>"2021-03-01","absence_start_date"=>"2021-03-30","absence_end_date"=>"2021-04-02","absence_approved"=>"1"),
+            array("user_id"=>2,"absence_reason"=>"Sick reason","absence_requested_date"=>"2021-02-21","absence_start_date"=>"2021-03-15","absence_end_date"=>"2021-03-17","absence_approved"=>"1"),
+            array("user_id"=>3,"absence_reason"=>"Sick reason","absence_requested_date"=>"2021-02-01","absence_start_date"=>"2021-03-20","absence_end_date"=>"2021-03-23","absence_approved"=>"1"),
+           
+        );
+
+        $attendances = array(
+            array("attendance_date"=>"2021-03-11"),
+            array("attendance_date"=>"2021-03-12"),
+            array("attendance_date"=>"2021-03-13"), 
+            array("attendance_date"=>"2021-03-14"), 
+            array("attendance_date"=>"2021-03-15"), 
+            array("attendance_date"=>"2021-03-16"), 
+            array("attendance_date"=>"2021-03-17"), 
+            array("attendance_date"=>"2021-03-18"), 
+            array("attendance_date"=>"2021-03-19"), 
+            array("attendance_date"=>"2021-03-20"), 
+            array("attendance_date"=>"2021-03-21"), 
         );
 
         $users = array(
@@ -321,12 +347,16 @@ class CustomSeeder extends Migration
         
            
         );
+        
 
+        DB::table('user__absence__requests')->insert($user__absence__requests);
+        DB::table('attendances')->insert($attendances);
         DB::table('branches')->insert($branches);
         DB::table('cohorts')->insert($cohorts);
         DB::table('admins')->insert($admins);
         DB::table('stages')->insert($stages);
         DB::table('users')->insert($users);
+        DB::table('roles')->insert($roles);
     }
 
     /**
