@@ -24,6 +24,7 @@ class UserAttendanceValidator extends FormRequest
     public function rules()
     {
         return [
+        'user_id',
         'attendance_id'=>'required',
         'present_absent'=>'required',
         'excuse',

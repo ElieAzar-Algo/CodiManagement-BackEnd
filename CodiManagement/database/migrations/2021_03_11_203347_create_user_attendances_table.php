@@ -16,7 +16,6 @@ class CreateUserAttendancesTable extends Migration
         Schema::create('user_attendances', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
-            $table->integer('admin_id');
             $table->integer('attendance_id');
             $table->boolean('present_absent');
             $table->boolean('excuse');

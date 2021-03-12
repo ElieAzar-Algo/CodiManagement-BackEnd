@@ -13,8 +13,23 @@ class CohortController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
+    { $data=Cohort::with('users')
+        ->get();
+        if($data)
+        {
+            return response()->json([
+                'success'=> true,
+                'message'=>'Operation Successful',
+                'data'=>$data
+            ], 200);
+        }
+        else
+        {
+            return response()->json([
+                'success' => false,
+                'message' => "No data found",
+           ], 404);
+        }
     }
 
     /**
@@ -44,9 +59,28 @@ class CohortController extends Controller
      * @param  \App\Cohort  $cohort
      * @return \Illuminate\Http\Response
      */
-    public function show(Cohort $cohort)
+    public function show($id)
     {
-        //
+        $data=Cohort::where('id',$id)
+        ->with('users')
+        ->get();
+    
+        if($data)
+        {
+            return response()->json([
+                'success'=> true,
+                'message'=>'Operation Successful',
+                'data'=>$data
+            ], 200);
+            
+        }
+        else
+        {
+            return response()->json([
+                'success' => false,
+                'message' => "No data found",
+           ], 404);
+        }
     }
 
     /**

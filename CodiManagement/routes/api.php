@@ -24,15 +24,23 @@ Route::post('/admin/logout', 'AdminAuthController@logout');
 Route::get('/branch','BranchController@index');
 Route::get('/branch/{id}','BranchController@show');
 
+Route::get('/cohort','CohortController@index');
+Route::get('/cohort/{id}','CohortController@show');
+
+Route::get('/attendance/{from}/{to}/{id}','AttendanceController@index');
+Route::get('/attendance/{date}','AttendanceController@show');
+Route::post('/attendance','AttendanceController@store');
+Route::delete('/attendance/{id}','AttendanceController@destroy');
+
 Route::group(['prefix' => 'admin', 'middleware' => ['assign.guard:admins','jwt.auth']],function ()
 {
-    Route::get('/demo','AdminController@demo');
+  
     
 });
 
 Route::group(['prefix' => 'user', 'middleware' => ['assign.guard:api','jwt.auth']],function ()
 {
-    Route::get('/demo','UserController@demo');
+    
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {

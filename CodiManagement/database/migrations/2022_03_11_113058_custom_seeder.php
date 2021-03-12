@@ -60,30 +60,30 @@ class CustomSeeder extends Migration
         );
 
         $attendances = array(
-            array("attendance_date"=>"2021-03-11"),
-            array("attendance_date"=>"2021-03-12"),
-            array("attendance_date"=>"2021-03-13"), 
-            array("attendance_date"=>"2021-03-14"), 
-            array("attendance_date"=>"2021-03-15"), 
-            array("attendance_date"=>"2021-03-16"), 
-            array("attendance_date"=>"2021-03-17"), 
-            array("attendance_date"=>"2021-03-18"), 
-            array("attendance_date"=>"2021-03-19"), 
-            array("attendance_date"=>"2021-03-20"), 
-            array("attendance_date"=>"2021-03-21"), 
+            array("attendance_date"=>"2021-03-11","admin_id"=>"1"),
+            array("attendance_date"=>"2021-03-12","admin_id"=>"1"),
+            array("attendance_date"=>"2021-03-13","admin_id"=>"1"), 
+            array("attendance_date"=>"2021-03-14","admin_id"=>"1"), 
+            array("attendance_date"=>"2021-03-15","admin_id"=>"1"), 
+            array("attendance_date"=>"2021-03-16","admin_id"=>"2"), 
+            array("attendance_date"=>"2021-03-17","admin_id"=>"2"), 
+            array("attendance_date"=>"2021-03-18","admin_id"=>"2"), 
+            array("attendance_date"=>"2021-03-19","admin_id"=>"2"), 
+            array("attendance_date"=>"2021-03-20","admin_id"=>"2"), 
+            array("attendance_date"=>"2021-03-21","admin_id"=>"2"), 
         );
 
         $user_attendances = array(
-            array("user_id"=>1,"admin_id"=>"1","attendance_id"=>"1","present_absent"=>"1","excuse"=>"0","attendance_key_amount"=>"10","comment"=>"No comment"),
-            array("user_id"=>1,"admin_id"=>"1","attendance_id"=>"2","present_absent"=>"1","excuse"=>"0","attendance_key_amount"=>"10","comment"=>"No comment"),
-            array("user_id"=>1,"admin_id"=>"1","attendance_id"=>"3","present_absent"=>"0","excuse"=>"1","attendance_key_amount"=>"0","comment"=>"No comment"),
-            array("user_id"=>1,"admin_id"=>"1","attendance_id"=>"4","present_absent"=>"1","excuse"=>"0","attendance_key_amount"=>"10","comment"=>"No comment"),
-            array("user_id"=>1,"admin_id"=>"1","attendance_id"=>"5","present_absent"=>"1","excuse"=>"0","attendance_key_amount"=>"10","comment"=>"No comment"),
-            array("user_id"=>2,"admin_id"=>"1","attendance_id"=>"1","present_absent"=>"1","excuse"=>"0","attendance_key_amount"=>"10","comment"=>"No comment"),
-            array("user_id"=>2,"admin_id"=>"1","attendance_id"=>"2","present_absent"=>"1","excuse"=>"0","attendance_key_amount"=>"10","comment"=>"No comment"),
-            array("user_id"=>2,"admin_id"=>"1","attendance_id"=>"3","present_absent"=>"0","excuse"=>"1","attendance_key_amount"=>"0","comment"=>"No comment"),
-            array("user_id"=>2,"admin_id"=>"1","attendance_id"=>"4","present_absent"=>"0","excuse"=>"0","attendance_key_amount"=>"0","comment"=>"No comment"),
-            array("user_id"=>2,"admin_id"=>"1","attendance_id"=>"5","present_absent"=>"1","excuse"=>"0","attendance_key_amount"=>"10","comment"=>"No comment"),
+            array("user_id"=>1,"attendance_id"=>"1","present_absent"=>"1","excuse"=>"0","attendance_key_amount"=>"10","comment"=>"No comment"),
+            array("user_id"=>1,"attendance_id"=>"2","present_absent"=>"1","excuse"=>"0","attendance_key_amount"=>"10","comment"=>"No comment"),
+            array("user_id"=>1,"attendance_id"=>"3","present_absent"=>"0","excuse"=>"1","attendance_key_amount"=>"0","comment"=>"No comment"),
+            array("user_id"=>1,"attendance_id"=>"4","present_absent"=>"1","excuse"=>"0","attendance_key_amount"=>"10","comment"=>"No comment"),
+            array("user_id"=>1,"attendance_id"=>"5","present_absent"=>"1","excuse"=>"0","attendance_key_amount"=>"10","comment"=>"No comment"),
+            array("user_id"=>2,"attendance_id"=>"1","present_absent"=>"1","excuse"=>"0","attendance_key_amount"=>"10","comment"=>"No comment"),
+            array("user_id"=>2,"attendance_id"=>"2","present_absent"=>"1","excuse"=>"0","attendance_key_amount"=>"10","comment"=>"No comment"),
+            array("user_id"=>2,"attendance_id"=>"3","present_absent"=>"0","excuse"=>"1","attendance_key_amount"=>"0","comment"=>"No comment"),
+            array("user_id"=>2,"attendance_id"=>"4","present_absent"=>"0","excuse"=>"0","attendance_key_amount"=>"0","comment"=>"No comment"),
+            array("user_id"=>2,"attendance_id"=>"5","present_absent"=>"1","excuse"=>"0","attendance_key_amount"=>"10","comment"=>"No comment"),
             
            
         );

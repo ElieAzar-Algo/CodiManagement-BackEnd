@@ -10,7 +10,6 @@ class UserAttendance extends Model
     protected $table = "user_attendances";
     protected $fillable=[
         'user_id',
-        'admin_id',
         'attendance_id',
         'present_absent',
         'excuse',

@@ -12,11 +12,29 @@ class AttendanceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($from, $to,$id)
     {
-        //
+         $data=Attendance::where('attendance_date','>=',$from)
+         ->where('attendance_date','<=',$to)
+         ->with('user_attendance')
+         ->with('admin')
+        ->get();
+        if($data)
+        {
+            return response()->json([
+                'success'=> true,
+                'message'=>'Operation Successful',
+                'data'=>$data
+            ], 200);
+        }
+        else
+        {
+            return response()->json([
+                'success' => false,
+                'message' => "No data found",
+           ], 404);
+       }
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -35,7 +53,24 @@ class AttendanceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data=new Attendance();
+        $data->fill($request->all());
+        $data->save();
+        if($data)
+        {
+            return response()->json([
+                'success'=> true,
+                'message'=>'Operation Successful',
+                'data'=>$data
+            ], 200);
+        }
+        else
+        {
+            return response()->json([
+                'success' => false,
+                'message' => "Attendance day may have not been created",
+           ], 404);
+        }
     }
 
     /**
@@ -44,9 +79,29 @@ class AttendanceController extends Controller
      * @param  \App\Attendance  $attendance
      * @return \Illuminate\Http\Response
      */
-    public function show(Attendance $attendance)
+    public function show($date)
     {
-        //
+        $data=Attendance::where('attendance_date',$date)
+        ->with('user_attendance')
+        ->with('admin')
+        ->get();
+    
+        if($data)
+        {
+            return response()->json([
+                'success'=> true,
+                'message'=>'Operation Successful',
+                'data'=>$data
+            ], 200);
+            
+        }
+        else
+        {
+            return response()->json([
+                'success' => false,
+                'message' => "No data found",
+           ], 404);
+        }
     }
 
     /**
@@ -78,8 +133,26 @@ class AttendanceController extends Controller
      * @param  \App\Attendance  $attendance
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Attendance $attendance)
+    public function destroy($id)
     {
-        //
+        $data=Attendance::find($id);
+        $data->user_attendance()->detach();
+
+        if($data->delete())
+        {
+            return response()->json([
+                'success'=> true,
+                'message'=>'Deleted Successfully',
+                'data'=>$data
+            ], 200);
+            
+        }
+        else
+        {
+            return response()->json([
+                'success' => false,
+                'message' => "Could not be deleted",
+           ], 404);
+        }
     }
 }
