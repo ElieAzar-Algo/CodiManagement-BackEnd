@@ -13,4 +13,9 @@ class Cohort extends Model
         'start_date',
         'end_date',
     ];
+
+    public function users()
+    {
+        return $this->hasMany('App\User','cohort_code','id');
+    }
 }

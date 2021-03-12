@@ -21,9 +21,13 @@ Route::post('/admin/register', 'AdminAuthController@register');
 Route::post('/admin/login', 'AdminAuthController@login');
 Route::post('/admin/logout', 'AdminAuthController@logout');
 
+Route::get('/branch','BranchController@index');
+Route::get('/branch/{id}','BranchController@show');
+
 Route::group(['prefix' => 'admin', 'middleware' => ['assign.guard:admins','jwt.auth']],function ()
 {
     Route::get('/demo','AdminController@demo');
+    
 });
 
 Route::group(['prefix' => 'user', 'middleware' => ['assign.guard:api','jwt.auth']],function ()

@@ -38,7 +38,8 @@ class CustomSeeder extends Migration
         $admins = array(
             array("role_id"=>1,"branch_id"=>"1","full_name"=>"Khaldoun Nourdine","username"=>"Khaldoun","email"=>"Khaldoun@mail.com","password"=>bcrypt("1234"),"description"=>"Laravel Master, Backend senior developer","active_inactive"=>"1"),
             array("role_id"=>2,"branch_id"=>"1","full_name"=>"Hassan Abdallah","username"=>"Hackour","email"=>"hassan@mail.com","password"=>bcrypt("1234"),"description"=>"Junior Full Stack Developer","active_inactive"=>"1"),
-            array("role_id"=>2,"branch_id"=>"2","full_name"=>"Nermine Noor","username"=>"Nermine","email"=>"Nermine@mail.com","password"=>bcrypt("1234"),"description"=>"React Native Practitioner, Mobile App developer","active_inactive"=>"1"),
+            array("role_id"=>1,"branch_id"=>"2","full_name"=>"Nermine Noor","username"=>"Nermine","email"=>"Nermine@mail.com","password"=>bcrypt("1234"),"description"=>"React Native Practitioner, Mobile App developer","active_inactive"=>"1"),
+            array("role_id"=>2,"branch_id"=>"1","full_name"=>"Gaby Karam","username"=>"Gaby","email"=>"Gaby@mail.com","password"=>bcrypt("1234"),"description"=>"Junior Full Stack Developer","active_inactive"=>"0"),
         );
 
         $stages = array(
