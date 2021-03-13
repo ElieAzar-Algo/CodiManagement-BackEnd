@@ -16,4 +16,8 @@ class User_Absence_Request extends Model
         'absence_end_date',
         'absence_approved',
     ];
+    public function user()
+    {
+        return $this->belongsTo('App\User','user_id','id');
+    }
 }

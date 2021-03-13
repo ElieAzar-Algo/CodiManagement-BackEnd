@@ -55,7 +55,8 @@ class CustomSeeder extends Migration
         $user__absence__requests = array(
             array("user_id"=>1,"absence_reason"=>"Sick reason","absence_requested_date"=>"2021-03-01","absence_start_date"=>"2021-03-30","absence_end_date"=>"2021-04-02","absence_approved"=>"1"),
             array("user_id"=>2,"absence_reason"=>"Sick reason","absence_requested_date"=>"2021-02-21","absence_start_date"=>"2021-03-15","absence_end_date"=>"2021-03-17","absence_approved"=>"1"),
-            array("user_id"=>3,"absence_reason"=>"Sick reason","absence_requested_date"=>"2021-02-01","absence_start_date"=>"2021-03-20","absence_end_date"=>"2021-03-23","absence_approved"=>"1"),
+            array("user_id"=>3,"absence_reason"=>"Sick reason","absence_requested_date"=>"2021-02-01","absence_start_date"=>"2021-03-20","absence_end_date"=>"2021-03-23","absence_approved"=>"0"),
+            array("user_id"=>4,"absence_reason"=>"Sick reason","absence_requested_date"=>"2021-02-01","absence_start_date"=>"2021-03-20","absence_end_date"=>"2021-03-23","absence_approved"=>"0"),
            
         );
 
