@@ -10,5 +10,10 @@ class Role extends Model
     protected $fillable=[
         'role'
     ];
+
+    public function admin()
+    {
+        return $this->hasMany('App\Admin','role_id','id');
+    }
     
 }

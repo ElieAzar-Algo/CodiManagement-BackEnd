@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\UserAttendance;
 use Illuminate\Http\Request;
+use App\Http\Requests\UserAttendanceValidator;
+use Illuminate\Foundation\Http\FormRequest;
 
 class UserAttendanceController extends Controller
 {
@@ -14,7 +16,7 @@ class UserAttendanceController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -67,9 +69,28 @@ class UserAttendanceController extends Controller
      * @param  \App\UserAttendance  $userAttendance
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, UserAttendance $userAttendance)
+    public function update(UserAttendanceValidator $request, $id)
     {
-        //
+        $data=UserAttendance::find($id);
+        if($data)
+        {
+         $data->update($request->all());
+         if ($data->save())
+         {
+            return response()->json([
+                'success'=> true,
+                'message'=>'Operation Successful',
+                'data'=>$data
+            ], 200);
+         }
+         else
+         {
+            return response()->json([
+                'success' => false,
+                'message' => "Operation Failed",
+           ], 404);
+         }
+        }
     }
 
     /**

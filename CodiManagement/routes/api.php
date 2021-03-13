@@ -32,6 +32,14 @@ Route::get('/attendance/{date}','AttendanceController@show');
 Route::post('/attendance','AttendanceController@store');
 Route::delete('/attendance/{id}','AttendanceController@destroy');
 
+//UserAttendanceController
+Route::put('/userAttendance/{id}','UserAttendanceController@update');
+
+//RoleController
+Route::resource('/role','RoleController');
+
+
+
 Route::group(['prefix' => 'admin', 'middleware' => ['assign.guard:admins','jwt.auth']],function ()
 {
   
