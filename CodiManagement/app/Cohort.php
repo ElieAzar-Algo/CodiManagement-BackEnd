@@ -18,4 +18,12 @@ class Cohort extends Model
     {
         return $this->hasMany('App\User','cohort_code','id');
     }
+
+    public function deleteHasRelations()
+    {
+        //delete all hasMany and hasOne data that related to the Cohort data deleted
+        $this->users()->delete();
+
+        return parent::delete();
+    }
 }

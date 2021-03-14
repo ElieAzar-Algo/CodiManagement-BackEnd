@@ -37,6 +37,9 @@ Route::delete('/branch/{id}','BranchController@destroy');
 //CohortController
 Route::get('/cohort','CohortController@index');
 Route::get('/cohort/{id}','CohortController@show');
+Route::post('/cohort','CohortController@store');
+Route::put('/cohort/{id}','CohortController@update');
+Route::delete('/cohort/{id}','CohortController@destroy');
 
 //AttendanceController
 Route::get('/attendance/{from}/{to}/{id}','AttendanceController@index');

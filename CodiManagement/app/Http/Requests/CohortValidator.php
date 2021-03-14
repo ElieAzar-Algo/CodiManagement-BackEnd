@@ -26,7 +26,7 @@ class CohortValidator extends FormRequest
     {
         return [
         'branch_id'=>'required|numeric',
-        'cohort_code'=>'required|numeric',
+        'cohort_code'=>'required',
         'start_date'=>'required|date',
         'end_date'=>'required|date|after:start_date',
         ];
