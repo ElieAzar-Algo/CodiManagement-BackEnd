@@ -50,23 +50,23 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        $data=new Role();
-        $data->fill($request->all());
-        if ($data->save())
-        {
-            return response()->json([
-                'success'=> true,
-                'message'=>'Operation Successful',
-                'data'=>$data
-            ], 200);
-        }
-        else
-        {
-            return response()->json([
-                'success' => false,
-                'message' => "Operation Failed",
-           ], 404);
-        }
+        // $data=new Role();
+        // $data->fill($request->all());
+        // if ($data->save())
+        // {
+        //     return response()->json([
+        //         'success'=> true,
+        //         'message'=>'Operation Successful',
+        //         'data'=>$data
+        //     ], 200);
+        // }
+        // else
+        // {
+        //     return response()->json([
+        //         'success' => false,
+        //         'message' => "Operation Failed",
+        //    ], 404);
+        // }
     }
 
     /**

@@ -54,9 +54,26 @@ class BranchController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BranchValidator $request)
     {
-        //
+        $data=new Branch();
+        $data->fill($request->all());
+        $data->save();
+        if($data)
+        {
+            return response()->json([
+                'success'=> true,
+                'message'=>'Operation Successful',
+                'data'=>$data
+            ], 200); 
+        }
+        else
+        {
+            return response()->json([
+                'success' => false,
+                'message' => "Operation failed",
+           ], 404);
+        }
     }
 
     /**
@@ -108,9 +125,28 @@ class BranchController extends Controller
      * @param  \App\Branch  $branch
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Branch $branch)
+    public function update(BranchValidator $request,$id)
     {
-        //
+        $data=Branch::find($id);
+        if($data)
+        {
+         $data->update($request->all());
+         if ($data->save())
+         {
+            return response()->json([
+                'success'=> true,
+                'message'=>'Operation Successful',
+                'data'=>$data
+            ], 200);
+         }
+         else
+         {
+            return response()->json([
+                'success' => false,
+                'message' => "Operation Failed",
+           ], 404);
+         }
+        }
     }
 
     /**
@@ -119,8 +155,26 @@ class BranchController extends Controller
      * @param  \App\Branch  $branch
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Branch $branch)
+    public function destroy($id)
     {
-        //
+        $data=Branch::find($id);
+        //$data->admin()->detach();
+
+        if($data->delete())
+        {
+            return response()->json([
+                'success'=> true,
+                'message'=>'Deleted Successfully',
+                'data'=>$data
+            ], 200);
+            
+        }
+        else
+        {
+            return response()->json([
+                'success' => false,
+                'message' => "Could not be deleted",
+           ], 404);
+        }
     }
 }

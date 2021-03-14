@@ -14,6 +14,7 @@ class AttendanceController extends Controller
      */
     public function index($from, $to,$id)
     {
+         
          $data=Attendance::where('attendance_date','>=',$from)
          ->where('attendance_date','<=',$to)
          ->with('user_attendance')

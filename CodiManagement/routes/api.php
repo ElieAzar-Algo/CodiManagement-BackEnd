@@ -30,6 +30,9 @@ Route::resource('/role','RoleController');
 //BranchController
 Route::get('/branch','BranchController@index');
 Route::get('/branch/{id}','BranchController@show');
+Route::post('/branch','BranchController@store');
+Route::put('/branch/{id}','BranchController@update');
+Route::delete('/branch/{id}','BranchController@destroy');
 
 //CohortController
 Route::get('/cohort','CohortController@index');
