@@ -14,7 +14,8 @@ class CohortController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    { $data=Cohort::with('users')
+    { 
+        $data=Cohort::with('users')
         ->get();
         if($data)
         {

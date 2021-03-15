@@ -27,6 +27,22 @@ Route::post('/admin/logout', 'AdminAuthController@logout');
 //RoleController
 Route::resource('/role','RoleController');
 
+//AdminController
+Route::get('/admin','AdminController@index');
+Route::get('/admin/{id}','AdminController@show');
+Route::get('/searchAdmin/{name}','AdminController@search');
+Route::post('/admin','AdminController@store');
+Route::put('/admin/{id}','AdminController@update');
+Route::delete('/admin/{id}','AdminController@destroy');
+
+//UserController
+Route::get('/users','UserController@index');
+Route::get('/user/{id}','UserController@show');
+Route::get('/searchUser/{field}/{value}','UserController@search');
+Route::post('/user','UserController@store');
+Route::put('/user/{id}','UserController@update');
+Route::delete('/user/{id}','UserController@destroy');
+
 //BranchController
 Route::get('/branch','BranchController@index');
 Route::get('/branch/{id}','BranchController@show');

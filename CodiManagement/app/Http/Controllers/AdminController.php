@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Admin;
+
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -14,7 +15,23 @@ class AdminController extends Controller
      */
     public function index()
     {
-        //
+        $data=Admin::where('active_inactive', 1)
+        ->get();
+        if($data)
+        {
+            return response()->json([
+                'success'=> true,
+                'message'=>'Operation Successful',
+                'data'=>$data
+            ], 200);
+        }
+        else
+        {
+            return response()->json([
+                'success' => false,
+                'message' => "No data found",
+           ], 404);
+        }
     }
 
     /**
@@ -35,7 +52,23 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data=new Admin();
+        $data->fill($request->all());
+        if ($data->save())
+        {
+            return response()->json([
+                'success'=> true,
+                'message'=>'Operation Successful',
+                'data'=>$data
+            ], 200);
+        }
+        else
+        {
+            return response()->json([
+                'success' => false,
+                'message' => "Operation Failed",
+           ], 404);
+        }
     }
 
     /**
@@ -44,9 +77,50 @@ class AdminController extends Controller
      * @param  \App\Admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function show(Admin $admin)
+    public function show($id)
     {
-        //
+        $data=Admin::where('id',$id)
+        ->get();
+    
+        if($data)
+        {
+            return response()->json([
+                'success'=> true,
+                'message'=>'Operation Successful',
+                'data'=>$data
+            ], 200);
+            
+        }
+        else
+        {
+            return response()->json([
+                'success' => false,
+                'message' => "No data found",
+           ], 404);
+        }
+    }
+
+    public function search($name)
+    {
+        $data=Admin::where('full_name','LIKE','%'.$name.'%')
+        ->get();
+    
+        if($data)
+        {
+            return response()->json([
+                'success'=> true,
+                'message'=>'Operation Successful',
+                'data'=>$data
+            ], 200);
+            
+        }
+        else
+        {
+            return response()->json([
+                'success' => false,
+                'message' => "No data found",
+           ], 404);
+        }
     }
 
     /**
@@ -67,9 +141,28 @@ class AdminController extends Controller
      * @param  \App\Admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Admin $admin)
+    public function update(Request $request,$id)
     {
-        //
+        $data=Admin::find($id);
+        if($data)
+        {
+         $data->update($request->all());
+         if ($data->save())
+         {
+            return response()->json([
+                'success'=> true,
+                'message'=>'Operation Successful',
+                'data'=>$data
+            ], 200);
+         }
+         else
+         {
+            return response()->json([
+                'success' => false,
+                'message' => "Operation Failed",
+           ], 404);
+         }
+        }
     }
 
     /**
@@ -78,9 +171,25 @@ class AdminController extends Controller
      * @param  \App\Admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Admin $admin)
+    public function destroy($id)
     {
-        //
+        $data=Admin::find($id);
+       if($data->delete())
+        {
+            return response()->json([
+                'success'=> true,
+                'message'=>'Deleted Successfully',
+                'data'=>$data
+            ], 200);
+            
+        }
+        else
+        {
+            return response()->json([
+                'success' => false,
+                'message' => "Could not be deleted",
+           ], 404);
+        }
     }
 
     public function demo() 
