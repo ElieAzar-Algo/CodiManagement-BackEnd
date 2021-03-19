@@ -34,6 +34,49 @@ class CohortController extends Controller
         }
     }
 
+    public function onlyCohorts()
+    { 
+        $data=Cohort::all();
+        if($data)
+        {
+            return response()->json([
+                'success'=> true,
+                'message'=>'Operation Successful',
+                'data'=>$data
+            ], 200);
+        }
+        else
+        {
+            return response()->json([
+                'success' => false,
+                'message' => "No data found",
+           ], 404);
+        }
+    }
+
+    public function search($value)
+    {
+        $data=Cohort::where('cohort_code','LIKE','%'.$value.'%')
+        ->get();
+    
+        if($data)
+        {
+            return response()->json([
+                'success'=> true,
+                'message'=>'Operation Successful',
+                'data'=>$data
+            ], 200);
+            
+        }
+        else
+        {
+            return response()->json([
+                'success' => false,
+                'message' => "No data found",
+           ], 404);
+        }
+    }
+
     /**
      * Show the form for creating a new resource.
      *

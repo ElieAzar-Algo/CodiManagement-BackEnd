@@ -41,6 +41,7 @@ Route::get('/user/{id}','UserController@show');
 Route::get('/searchUser/{field}/{value}','UserController@search');
 Route::post('/user','UserController@store');
 Route::put('/user/{id}','UserController@update');
+Route::patch('/user/{id}','UserController@edit');
 Route::delete('/user/{id}','UserController@destroy');
 
 //BranchController
@@ -52,7 +53,9 @@ Route::delete('/branch/{id}','BranchController@destroy');
 
 //CohortController
 Route::get('/cohort','CohortController@index');
+Route::get('/only-cohorts','CohortController@onlyCohorts');
 Route::get('/cohort/{id}','CohortController@show');
+Route::get('/searchCohort/{value}','CohortController@search');
 Route::post('/cohort','CohortController@store');
 Route::put('/cohort/{id}','CohortController@update');
 Route::delete('/cohort/{id}','CohortController@destroy');
@@ -68,12 +71,12 @@ Route::put('/userAttendance/{id}','UserAttendanceController@update');
 
 //UserAbsenceRequestController
 Route::get('/UserAbsenceRequest/{requestDate}','UserAbsenceRequestController@index');
+Route::get('/UserAbsenceRequest-user/{userId}','UserAbsenceRequestController@showByUser');
 Route::post('/UserAbsenceRequest','UserAbsenceRequestController@store');
 Route::put('/UserAbsenceRequest/{id}','UserAbsenceRequestController@update');
 Route::delete('/UserAbsenceRequest/{id}','UserAbsenceRequestController@destroy');
 //get start absence date
 Route::get('/UserAbsenceStart/{absence_start_date}','UserAbsenceRequestController@show');
-
 
 
 Route::group(['prefix' => 'admin', 'middleware' => ['assign.guard:admins','jwt.auth']],function ()

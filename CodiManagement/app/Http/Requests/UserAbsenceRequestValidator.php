@@ -44,7 +44,7 @@ class UserAbsenceRequestValidator extends FormRequest
            
             'absence_start_date.date' => 'Start date should be a date',
             'absence_end_date.date' => 'End Date should be a date',
-            'absence_end_date.after' => 'End Date should be after the start date',
+            'absence_end_date.after:absence_start_date' => 'End Date should be after the start date',
         ];
    }
 }

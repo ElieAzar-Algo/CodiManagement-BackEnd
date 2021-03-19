@@ -33,6 +33,27 @@ class UserAbsenceRequestController extends Controller
         }
     }
 
+    public function showByUser($userId)
+    {
+        $data=User_Absence_Request::where('user_id',$userId)
+        ->get();
+        if($data)
+        {
+            return response()->json([
+                'success'=> true,
+                'message'=>'Operation Successful',
+                'data'=>$data
+            ], 200);
+        }
+        else
+        {
+            return response()->json([
+                'success' => false,
+                'message' => "No data found",
+           ], 404);
+        }
+    }
+
     /**
      * Show the form for creating a new resource.
      *
