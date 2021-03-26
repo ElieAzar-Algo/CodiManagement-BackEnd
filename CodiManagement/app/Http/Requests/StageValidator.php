@@ -25,7 +25,7 @@ class StageValidator extends FormRequest
     {
         return [
         'prairie'=>'required',
-        'cohort_code'=>'required|numeric',
+        'cohort_code'=>'required',
         'stage_name'=>'required',
         'start_date'=>'required|date',
         'end_date'=>'required|date|after:start_date',

@@ -89,6 +89,16 @@ class CustomSeeder extends Migration
            
         );
 
+        $tasks = array(
+            array("stage_id"=>"2","task_name"=>"cv styling","task_link"=>"https://codi.gitbook.io/docs/04_challenges/cv-styling-master","task_type"=>"Challenge","key_range"=>"100"),
+            array("stage_id"=>"2","task_name"=>"Movie Database","task_link"=>"https://codi.gitbook.io/docs/04_challenges/movie-databaser","task_type"=>"Challenge","key_range"=>"50"),
+            array("stage_id"=>"2","task_name"=>"HTML-CSS-GIT","task_link"=>"https://codi.gitbook.io/docs/03_exercises/01_html_css/html_css_git","task_type"=>"Exercise","key_range"=>"200"),
+            array("stage_id"=>"2","task_name"=>"Interactive Story","task_link"=>"https://codi.gitbook.io/docs/07_non_pogramming/interactive-story-part1","task_type"=>"Non-Programming","key_range"=>"100"),
+            array("stage_id"=>"3","task_name"=>"Real Client Project One","task_link"=>"https://codi.gitbook.io/docs/general/04_participate/05-how-to-project-template","task_type"=>"Project","key_range"=>null),
+            array("stage_id"=>"5","task_name"=>"Chat App","task_link"=>"","task_type"=>"Socket IO","key_range"=>null),
+            
+        );
+
         $users = array(
             array(
             "cohort_code"=>2,
@@ -375,6 +385,7 @@ class CustomSeeder extends Migration
         DB::table('stages')->insert($stages);
         DB::table('users')->insert($users);
         DB::table('roles')->insert($roles);
+        DB::table('tasks')->insert($tasks);
     }
 
     /**

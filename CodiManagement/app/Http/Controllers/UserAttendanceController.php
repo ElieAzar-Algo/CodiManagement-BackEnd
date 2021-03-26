@@ -35,9 +35,37 @@ class UserAttendanceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(UserAttendanceValidator $request)
+    {    
+        $data = null;
+        if(UserAttendance::where([ ['user_id', $request->user_id], ['attendance_id', $request->attendance_id]])
+        ->count() > 0){
+            $data = UserAttendance::where('user_id', $request->user_id)
+            ->where('attendance_id', $request->attendance_id)->first();
+        } else {
+            $data=new UserAttendance();
+        }
+        
+        $data->fill($request->all());
+        if($data->save())
+        {
+         $data->fill($request->all());
+         if ($data->save())
+         {
+            return response()->json([
+                'success'=> true,
+                'message'=>'Operation Successful',
+                'data'=>$data
+            ], 200);
+         }
+         else
+         {
+            return response()->json([
+                'success' => false,
+                'message' => "Operation Failed",
+           ], 404);
+         }
+        }
     }
 
     /**
@@ -46,9 +74,28 @@ class UserAttendanceController extends Controller
      * @param  \App\UserAttendance  $userAttendance
      * @return \Illuminate\Http\Response
      */
-    public function show(UserAttendance $userAttendance)
+    public function show($userId,$attendanceId)
     {
-        //
+        $data=Attendance::where('user_id',$userId)
+        ->where('attendance_id',$attendanceId)
+        ->first();
+    
+        if($data)
+        {
+            return response()->json([
+                'success'=> true,
+                'message'=>'Operation Successful',
+                'data'=>$data
+            ], 200);
+            
+        }
+        else
+        {
+            return response()->json([
+                'success' => false,
+                'message' => "No data found",
+           ], 404);
+        }
     }
 
     /**
@@ -99,8 +146,28 @@ class UserAttendanceController extends Controller
      * @param  \App\UserAttendance  $userAttendance
      * @return \Illuminate\Http\Response
      */
-    public function destroy(UserAttendance $userAttendance)
-    {
-        //
-    }
+    // public function destroy($userId,$attendanceId)
+    // {
+    //     $data=Attendance::where('user_id',$userId)
+    //     ->where('attendance_id',$attendanceId)
+    //     ->first();
+    //     $data->user_attendance()->detach();
+
+    //     if($data->delete())
+    //     {
+    //         return response()->json([
+    //             'success'=> true,
+    //             'message'=>'Deleted Successfully',
+    //             'data'=>$data
+    //         ], 200);
+            
+    //     }
+    //     else
+    //     {
+    //         return response()->json([
+    //             'success' => false,
+    //             'message' => "Could not be deleted",
+    //        ], 404);
+    //     }
+    // }
 }

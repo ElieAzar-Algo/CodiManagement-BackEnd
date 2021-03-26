@@ -126,10 +126,31 @@ class UserAbsenceRequestController extends Controller
      * @param  \App\User_Absence_Request  $user_Absence_Request
      * @return \Illuminate\Http\Response
      */
-    public function edit(User_Absence_Request $user_Absence_Request)
+    public function edit(Request $request,$id)
     {
-        //
-    }
+        $data=User_Absence_Request::find($id);
+        if($data)
+        {
+         $data->update($request->all());
+         if ($data->save())
+         {
+            return response()->json([
+                'success'=> true,
+                'message'=>'Operation Successful',
+                'data'=>$data
+            ], 200);
+         }
+         else
+         {
+            return response()->json([
+                'success' => false,
+                'message' => "Operation Failed",
+           ], 404);
+         }
+        }
+        }
+        
+    
 
     /**
      * Update the specified resource in storage.

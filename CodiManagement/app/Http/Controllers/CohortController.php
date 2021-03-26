@@ -162,7 +162,7 @@ class CohortController extends Controller
      * @param  \App\Cohort  $cohort
      * @return \Illuminate\Http\Response
      */
-    public function update(CohortValidator $request,$id)
+    public function update(Request $request,$id)
     {
         $data=Cohort::find($id);
         if($data)

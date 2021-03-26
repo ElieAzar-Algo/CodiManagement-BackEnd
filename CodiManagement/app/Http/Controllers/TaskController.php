@@ -2,35 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Stage;
-use App\Http\Requests\StageValidator;
+use App\Task;
 use Illuminate\Http\Request;
+use App\Http\Requests\TaskValidator;
 
-class StageController extends Controller
+class TaskController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($cohortId)
+    public function index()
     {
-        $data=Stage::where('cohort_code',$cohortId)->get();
-        if($data)
-        {
-            return response()->json([
-                'success'=> true,
-                'message'=>'Operation Successful',
-                'data'=>$data
-            ], 200);
-        }
-        else
-        {
-            return response()->json([
-                'success' => false,
-                'message' => "No data found",
-           ], 404);
-        }
+        //
     }
 
     /**
@@ -49,9 +34,9 @@ class StageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StageValidator $request)
-    {
-        $data=new Stage();
+    public function store(TaskValidator $request)
+    { 
+        $data=new Task();
         $data->fill($request->all());
         if ($data->save())
         {
@@ -73,71 +58,33 @@ class StageController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Stage  $stage
+     * @param  \App\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Task $task)
     {
-        $data=Stage::where('id',$id)
-       ->with('task')
-        ->first();
-    
-        if($data)
-        {
-            return response()->json([
-                'success'=> true,
-                'message'=>'Operation Successful',
-                'data'=>$data
-            ], 200);
-            
-        }
-        else
-        {
-            return response()->json([
-                'success' => false,
-                'message' => "No data found",
-           ], 404);
-        }
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Stage  $stage
+     * @param  \App\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request,$id)
+    public function edit(Task $task)
     {
-        $data=stage::find($id);
-        if($data)
-        {
-         $data->update($request->all());
-         if ($data->save())
-         {
-            return response()->json([
-                'success'=> true,
-                'message'=>'Operation Successful',
-                'data'=>$data
-            ], 200);
-         }
-         else
-         {
-            return response()->json([
-                'success' => false,
-                'message' => "Operation Failed",
-           ], 404);
-         }
-        }
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Stage  $stage
+     * @param  \App\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Stage $stage)
+    public function update(Request $request, Task $task)
     {
         //
     }
@@ -145,12 +92,12 @@ class StageController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Stage  $stage
+     * @param  \App\Task  $task
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $data=Stage::find($id);
+        $data=Task::find($id);
         //$data->admin()->detach();
 
         if($data->delete())

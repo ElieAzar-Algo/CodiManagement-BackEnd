@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Attendance;
 use Illuminate\Http\Request;
+use App\Http\Requests\Attendancevalidator;
 
 class AttendanceController extends Controller
 {
@@ -17,8 +18,9 @@ class AttendanceController extends Controller
          
          $data=Attendance::where('attendance_date','>=',$from)
          ->where('attendance_date','<=',$to)
-         ->with('user_attendance')
-         ->with('admin')
+         ->with(['user_attendance' => function ($query) use ($id) {
+             $query->select()->where('user_id', $id);
+         }, 'admin:id,full_name,username'])
         ->get();
         if($data)
         {
@@ -52,12 +54,12 @@ class AttendanceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Attendancevalidator $request)
     {
+        
         $data=new Attendance();
         $data->fill($request->all());
-        $data->save();
-        if($data)
+        if($data->save())
         {
             return response()->json([
                 'success'=> true,

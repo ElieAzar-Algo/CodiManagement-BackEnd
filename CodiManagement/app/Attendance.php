@@ -15,8 +15,9 @@ class Attendance extends Model
     public function user_attendance()
     {
    
-        //dd($id);
+        // dd(2);
        return $this->belongsToMany('App\User', 'user_attendances','attendance_id','user_id')
+       ->with('cohort')
        ->withPivot(
         'present_absent',
         'excuse',

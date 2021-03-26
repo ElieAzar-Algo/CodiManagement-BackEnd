@@ -15,4 +15,9 @@ class Stage extends Model
         'end_date',
         'active_inactive'
     ];
+
+    public function task()
+    {
+        return $this->hasMany('App\Task','stage_id','id');
+    }
 }

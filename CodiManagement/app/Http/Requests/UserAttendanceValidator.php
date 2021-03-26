@@ -28,7 +28,7 @@ class UserAttendanceValidator extends FormRequest
         'attendance_id'=>'required',
         'present_absent'=>'required',
         'excuse',
-        'attendance_key_amount'=>'required|numeric',
+        'attendance_key_amount'=>'numeric|nullable',
         'verified_date',
         'comment',
         ];
@@ -38,8 +38,8 @@ class UserAttendanceValidator extends FormRequest
     {
         return [
             'attendance_id.required' => 'Choosing an attendance date is required',
+            
             'present_absent.required' => 'Attendance is required',
-            'attendance_key_amount.required' => 'Key amount is required',
             'attendance_key_amount.numeric' => 'Key amount should be a number',
         ];
     }
