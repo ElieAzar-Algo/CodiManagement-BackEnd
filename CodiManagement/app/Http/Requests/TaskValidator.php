@@ -28,8 +28,11 @@ class TaskValidator extends FormRequest
             'task_name'=>'required',
             'task_link'=>'nullable',
             'task_type',
+            'is_teamwork'=>'required',
+
             'key_range'=>'numeric|nullable',
-            
+            'start_date'=>'required|date',
+            'end_date'=>'required|date|after:start_date',
             ];
     }
 
@@ -37,7 +40,14 @@ class TaskValidator extends FormRequest
     {
         return [
             'task_name.required' => 'Task Name is required',
+            'start_date.required' => 'start date is required',
+            'end_date.required' => 'end date is required',
+            'is_teamwork.required' => 'Choosing if it is a Teamwork is required',
+
             'key_range.numeric' => 'Key amount should be a number',
+            'start_date.date' => 'Start date should be a date',
+            'end_date.date' => 'End Date should be a date',
+            'end_date.after:start_date' => 'End Date should be after the start date',
         ];
     }
 }

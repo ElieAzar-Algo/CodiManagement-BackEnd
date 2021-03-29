@@ -125,7 +125,7 @@ class BranchController extends Controller
      * @param  \App\Branch  $branch
      * @return \Illuminate\Http\Response
      */
-    public function update(BranchValidator $request,$id)
+    public function update(Request $request,$id)
     {
         $data=Branch::find($id);
         if($data)

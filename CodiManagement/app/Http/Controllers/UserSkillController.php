@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Task;
+use App\UserSkill;
 use Illuminate\Http\Request;
-use App\Http\Requests\TaskValidator;
+use App\Http\Requests\UserSkillValidator;
 
-class TaskController extends Controller
+class UserSkillController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,9 +34,9 @@ class TaskController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(TaskValidator $request)
-    { 
-        $data=new Task();
+    public function store(UserSkillValidator $request)
+    {
+        $data=new UserSkill();
         $data->fill($request->all());
         if ($data->save())
         {
@@ -58,10 +58,10 @@ class TaskController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Task  $task
+     * @param  \App\UserSkill  $userSkill
      * @return \Illuminate\Http\Response
      */
-    public function show(Task $task)
+    public function show(UserSkill $userSkill)
     {
         //
     }
@@ -69,13 +69,13 @@ class TaskController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Task  $task
+     * @param  \App\UserSkill  $userSkill
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, $id)
+    
+    public function edit(Request $request,$userId,$skillId)
     {
-        
-        $data=Task::find($id);
+        $data=UserSkill::where('user_id',$userId)->where('skill_id',$skillId)->first();
         if($data)
         {
          $data->update($request->all());
@@ -101,10 +101,10 @@ class TaskController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Task  $task
+     * @param  \App\UserSkill  $userSkill
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Task $task)
+    public function update(Request $request, UserSkill $userSkill)
     {
         //
     }
@@ -112,29 +112,11 @@ class TaskController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Task  $task
+     * @param  \App\UserSkill  $userSkill
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(UserSkill $userSkill)
     {
-        $data=Task::find($id);
-        //$data->admin()->detach();
-
-        if($data->delete())
-        {
-            return response()->json([
-                'success'=> true,
-                'message'=>'Deleted Successfully',
-                'data'=>$data
-            ], 200);
-            
-        }
-        else
-        {
-            return response()->json([
-                'success' => false,
-                'message' => "Could not be deleted",
-           ], 404);
-        }
+        //
     }
 }

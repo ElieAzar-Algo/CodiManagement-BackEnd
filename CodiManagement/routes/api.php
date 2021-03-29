@@ -29,6 +29,8 @@ Route::resource('/role','RoleController');
 
 //AdminController
 Route::get('/admin','AdminController@index');
+//allAdmins
+Route::get('/all-admins','AdminController@allAdmins');
 Route::get('/admin/{id}','AdminController@show');
 Route::get('/searchAdmin/{name}','AdminController@search');
 Route::post('/admin','AdminController@store');
@@ -43,12 +45,18 @@ Route::post('/user','UserController@store');
 Route::put('/user/{id}','UserController@update');
 Route::patch('/user/{id}','UserController@edit');
 Route::delete('/user/{id}','UserController@destroy');
+//showSkills
+Route::get('/user-skills/{id}','UserController@showSkills');
+//showByCohort
+Route::get('/user-byCohort/{id}','UserController@showByCohort');
+
+
 
 //BranchController
 Route::get('/branch','BranchController@index');
 Route::get('/branch/{id}','BranchController@show');
 Route::post('/branch','BranchController@store');
-Route::put('/branch/{id}','BranchController@update');
+Route::patch('/branch/{id}','BranchController@update');
 Route::delete('/branch/{id}','BranchController@destroy');
 
 //CohortController
@@ -90,8 +98,22 @@ Route::patch('/stage/{id}','StageController@edit');
 //TaskController
 Route::post('/task','TaskController@store');
 Route::delete('/task/{id}','TaskController@destroy');
+Route::patch('/task/{id}','TaskController@edit');
 
+//UsersTasksController
+Route::get('/user-task/{taskId}','UsersTasksController@index');
+Route::get('/user-task-individually/{userId}','UsersTasksController@indexUser');
+Route::post('/user-task','UsersTasksController@store');
+Route::patch('/user-task/{id}','UsersTasksController@edit');
+Route::delete('/user-task/{id}','UsersTasksController@destroy');
 
+//SkillController
+Route::get('/skill','SkillController@index');
+Route::patch('/skill/{id}','SkillController@edit');
+
+//UserSkillController pivot
+Route::patch('/skill-progress/{userId}/{skillId}','UserSkillController@edit');
+Route::post('/skill-progress','UserSkillController@store');
 
 
 

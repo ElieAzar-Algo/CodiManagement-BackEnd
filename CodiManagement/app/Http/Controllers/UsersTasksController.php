@@ -2,21 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Admin;
-
+use App\UsersTasks;
 use Illuminate\Http\Request;
+use App\Http\Requests\UsersTasksValidator;
 
-class AdminController extends Controller
+class UsersTasksController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($taskId)
     {
-        $data=Admin::where('active_inactive', 1)
-        ->get(['id','username']);
+        $data=UsersTasks::where('task_id',$taskId)
+        ->with('user:id,user_first_name,user_last_name')
+        ->with('admin:id,username')
+        ->get();
         if($data)
         {
             return response()->json([
@@ -33,9 +35,12 @@ class AdminController extends Controller
            ], 404);
         }
     }
-    public function allAdmins()
+    public function indexUser($userId)
     {
-        $data=Admin::all();
+        $data=UsersTasks::where('user_id',$userId)
+        ->with('admin:id,username')
+        ->with('task')
+        ->get();
         if($data)
         {
             return response()->json([
@@ -69,9 +74,9 @@ class AdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UsersTasksValidator $request)
     {
-        $data=new Admin();
+        $data=new UsersTasks();
         $data->fill($request->all());
         if ($data->save())
         {
@@ -93,76 +98,23 @@ class AdminController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Admin  $admin
+     * @param  \App\UsersTasks  $usersTasks
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        $data=Admin::where('id',$id)
-        ->get();
-    
-        if($data)
-        {
-            return response()->json([
-                'success'=> true,
-                'message'=>'Operation Successful',
-                'data'=>$data
-            ], 200);
-            
-        }
-        else
-        {
-            return response()->json([
-                'success' => false,
-                'message' => "No data found",
-           ], 404);
-        }
-    }
-
-    public function search($name)
-    {
-        $data=Admin::where('full_name','LIKE','%'.$name.'%')
-        ->get();
-    
-        if($data)
-        {
-            return response()->json([
-                'success'=> true,
-                'message'=>'Operation Successful',
-                'data'=>$data
-            ], 200);
-            
-        }
-        else
-        {
-            return response()->json([
-                'success' => false,
-                'message' => "No data found",
-           ], 404);
-        }
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Admin  $admin
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Admin $admin)
+    public function show(UsersTasks $usersTasks)
     {
         //
     }
 
     /**
-     * Update the specified resource in storage.
+     * Show the form for editing the specified resource.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Admin  $admin
+     * @param  \App\UsersTasks  $usersTasks
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$id)
+    public function edit(Request $request,$id)
     {
-        $data=Admin::find($id);
+        $data=UsersTasks::find($id);
         if($data)
         {
          $data->update($request->all());
@@ -185,15 +137,27 @@ class AdminController extends Controller
     }
 
     /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\UsersTasks  $usersTasks
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, UsersTasks $usersTasks)
+    {
+        //
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Admin  $admin
+     * @param  \App\UsersTasks  $usersTasks
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $data=Admin::find($id);
-       if($data->delete())
+        $data=UsersTasks::find($id);
+        if($data->delete())
         {
             return response()->json([
                 'success'=> true,
@@ -210,10 +174,4 @@ class AdminController extends Controller
            ], 404);
         }
     }
-
-    public function demo() 
-    {
-        return "Hello Admin";
-    }
-
 }

@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Task;
+use App\Skill;
 use Illuminate\Http\Request;
-use App\Http\Requests\TaskValidator;
 
-class TaskController extends Controller
+class SkillController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +14,22 @@ class TaskController extends Controller
      */
     public function index()
     {
-        //
+        $data=Skill::all();
+        if($data)
+        {
+            return response()->json([
+                'success'=> true,
+                'message'=>'Operation Successful',
+                'data'=>$data
+            ], 200);
+        }
+        else
+        {
+            return response()->json([
+                'success' => false,
+                'message' => "No data found",
+           ], 404);
+        }
     }
 
     /**
@@ -34,34 +48,18 @@ class TaskController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(TaskValidator $request)
-    { 
-        $data=new Task();
-        $data->fill($request->all());
-        if ($data->save())
-        {
-            return response()->json([
-                'success'=> true,
-                'message'=>'Operation Successful',
-                'data'=>$data
-            ], 200);
-        }
-        else
-        {
-            return response()->json([
-                'success' => false,
-                'message' => "Operation Failed",
-           ], 404);
-        }
+    public function store(Request $request)
+    {
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Task  $task
+     * @param  \App\Skill  $skill
      * @return \Illuminate\Http\Response
      */
-    public function show(Task $task)
+    public function show(Skill $skill)
     {
         //
     }
@@ -69,13 +67,13 @@ class TaskController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Task  $task
+     * @param  \App\Skill  $skill
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, $id)
+    public function edit(Request $request,$id)
     {
         
-        $data=Task::find($id);
+        $data=Skill::find($id);
         if($data)
         {
          $data->update($request->all());
@@ -101,10 +99,10 @@ class TaskController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Task  $task
+     * @param  \App\Skill  $skill
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Task $task)
+    public function update(Request $request, Skill $skill)
     {
         //
     }
@@ -112,29 +110,11 @@ class TaskController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Task  $task
+     * @param  \App\Skill  $skill
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Skill $skill)
     {
-        $data=Task::find($id);
-        //$data->admin()->detach();
-
-        if($data->delete())
-        {
-            return response()->json([
-                'success'=> true,
-                'message'=>'Deleted Successfully',
-                'data'=>$data
-            ], 200);
-            
-        }
-        else
-        {
-            return response()->json([
-                'success' => false,
-                'message' => "Could not be deleted",
-           ], 404);
-        }
+        //
     }
 }

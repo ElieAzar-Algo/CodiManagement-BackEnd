@@ -90,13 +90,65 @@ class CustomSeeder extends Migration
         );
 
         $tasks = array(
-            array("stage_id"=>"2","task_name"=>"cv styling","task_link"=>"https://codi.gitbook.io/docs/04_challenges/cv-styling-master","task_type"=>"Challenge","key_range"=>"100"),
-            array("stage_id"=>"2","task_name"=>"Movie Database","task_link"=>"https://codi.gitbook.io/docs/04_challenges/movie-databaser","task_type"=>"Challenge","key_range"=>"50"),
-            array("stage_id"=>"2","task_name"=>"HTML-CSS-GIT","task_link"=>"https://codi.gitbook.io/docs/03_exercises/01_html_css/html_css_git","task_type"=>"Exercise","key_range"=>"200"),
-            array("stage_id"=>"2","task_name"=>"Interactive Story","task_link"=>"https://codi.gitbook.io/docs/07_non_pogramming/interactive-story-part1","task_type"=>"Non-Programming","key_range"=>"100"),
-            array("stage_id"=>"3","task_name"=>"Real Client Project One","task_link"=>"https://codi.gitbook.io/docs/general/04_participate/05-how-to-project-template","task_type"=>"Project","key_range"=>null),
-            array("stage_id"=>"5","task_name"=>"Chat App","task_link"=>"","task_type"=>"Socket IO","key_range"=>null),
+            array("stage_id"=>"2","task_name"=>"cv styling","task_link"=>"https://codi.gitbook.io/docs/04_challenges/cv-styling-master","task_type"=>"Challenge","key_range"=>"100","is_teamwork"=>"0","start_date"=>"2020-10-01","end_date"=>"2020-10-10"),
+            array("stage_id"=>"2","task_name"=>"Movie Database","task_link"=>"https://codi.gitbook.io/docs/04_challenges/movie-databaser","task_type"=>"Challenge","key_range"=>"50","is_teamwork"=>"0","start_date"=>"2020-10-10","end_date"=>"2020-10-20"),
+            array("stage_id"=>"2","task_name"=>"HTML-CSS-GIT","task_link"=>"https://codi.gitbook.io/docs/03_exercises/01_html_css/html_css_git","task_type"=>"Exercise","key_range"=>"200","is_teamwork"=>"0","start_date"=>"2020-10-20","end_date"=>"2020-10-30"),
+            array("stage_id"=>"2","task_name"=>"Interactive Story","task_link"=>"https://codi.gitbook.io/docs/07_non_pogramming/interactive-story-part1","task_type"=>"Non-Programming","key_range"=>"100","is_teamwork"=>"1","start_date"=>"2020-11-01","end_date"=>"2020-11-10"),
+            array("stage_id"=>"3","task_name"=>"Real Client Project One","task_link"=>"https://codi.gitbook.io/docs/general/04_participate/05-how-to-project-template","task_type"=>"Project","key_range"=>null,"is_teamwork"=>"1","start_date"=>"2020-11-10","end_date"=>"2020-12-30"),
+            array("stage_id"=>"5","task_name"=>"Chat App","task_link"=>"","task_type"=>"Socket IO","key_range"=>null,"is_teamwork"=>"0","start_date"=>"2021-02-01","end_date"=>"2021-03-01"),
             
+        );
+
+        $users_tasks = array(
+            
+            
+            array("task_id"=>"1","user_id"=>"1","admin_id"=>"1","keys"=>"100","progress"=>"1","assignment_link"=>"lalalalala"),
+            array("task_id"=>"1","user_id"=>"2","admin_id"=>"1","keys"=>"100","progress"=>"1","assignment_link"=>"lalalalala"),
+            array("task_id"=>"1","user_id"=>"3","admin_id"=>"1","keys"=>"100","progress"=>"1","assignment_link"=>"lalalalala"),
+            array("task_id"=>"1","user_id"=>"4","admin_id"=>"1","keys"=>"100","progress"=>"1","assignment_link"=>"lalalalala"),
+            array("task_id"=>"1","user_id"=>"5","admin_id"=>"1","keys"=>"100","progress"=>"1","assignment_link"=>"lalalalala"),
+            array("task_id"=>"1","user_id"=>"6","admin_id"=>"1","keys"=>"100","progress"=>"1","assignment_link"=>"lalalalala"),
+
+            array("task_id"=>"6","user_id"=>"1","admin_id"=>"2","keys"=>null,"progress"=>"1","assignment_link"=>"lalalalala"),
+            array("task_id"=>"6","user_id"=>"2","admin_id"=>"2","keys"=>null,"progress"=>"1","assignment_link"=>"lalalalala"),
+            array("task_id"=>"6","user_id"=>"3","admin_id"=>"2","keys"=>null,"progress"=>"1","assignment_link"=>"lalalalala"),
+            array("task_id"=>"6","user_id"=>"4","admin_id"=>"2","keys"=>null,"progress"=>"1","assignment_link"=>"lalalalala"),
+            array("task_id"=>"6","user_id"=>"5","admin_id"=>"2","keys"=>null,"progress"=>"1","assignment_link"=>"lalalalala"),
+            array("task_id"=>"6","user_id"=>"6","admin_id"=>"2","keys"=>null,"progress"=>"1","assignment_link"=>"lalalalala"),
+            
+        );
+
+        $skills = array(
+            array("name"=>"HTML","skill_family"=>"Core Competencies"),
+            array("name"=>"CSS","skill_family"=>"Core Competencies"),
+            array("name"=>"Vanilla JS","skill_family"=>"Core Competencies"),
+            array("name"=>"PHP","skill_family"=>"Core Competencies"),
+
+            array("name"=>"Research","skill_family"=>"Project Management"),
+            array("name"=>"Time Estimation","skill_family"=>"Project Management"),
+            array("name"=>"Teamwork/Delegation","skill_family"=>"Project Management"),
+            array("name"=>"Agile Methodology","skill_family"=>"Project Management"),
+
+            array("name"=>"CSS Pre-processors","skill_family"=>"Advanced Tools & Build Tool"),
+
+            array("name"=>"Sqlite","skill_family"=>"Databases"),
+            array("name"=>"mySQL/mariaDB","skill_family"=>"Databases"),
+            array("name"=>"MongoDB","skill_family"=>"Databases"),
+
+            array("name"=>"React","skill_family"=>"Frameworks"),
+            array("name"=>"React Native","skill_family"=>"Frameworks"),
+            array("name"=>"Laravel","skill_family"=>"Frameworks"),
+
+            array("name"=>"Git","skill_family"=>"Command-Line"),
+            array("name"=>"SSH","skill_family"=>"Command-Line"),
+            array("name"=>"Vim/Nano","skill_family"=>"Command-Line"),
+
+            array("name"=>"Express","skill_family"=>"Server Side JS"),
+            array("name"=>"Node","skill_family"=>"Server Side JS"),
+
+
+
+           
         );
 
         $users = array(
@@ -386,6 +438,8 @@ class CustomSeeder extends Migration
         DB::table('users')->insert($users);
         DB::table('roles')->insert($roles);
         DB::table('tasks')->insert($tasks);
+        DB::table('skills')->insert($skills);
+        DB::table('users_tasks')->insert($users_tasks);
     }
 
     /**

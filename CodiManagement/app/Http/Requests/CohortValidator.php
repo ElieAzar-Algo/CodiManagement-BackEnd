@@ -40,8 +40,8 @@ class CohortValidator extends FormRequest
             'start_date.required' => 'Start date is required',
             'end_date.required' => 'End Date is required',
 
-            'start_date.required' => 'Start date should be a date',
-            'end_date.required' => 'End Date should be a date',
+            'start_date.date' => 'Start date should be a date',
+            'end_date.date' => 'End Date should be a date',
             'end_date.after:start_date' => 'End Date should be after the start date',
         ];
     }

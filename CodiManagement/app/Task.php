@@ -13,5 +13,8 @@ class Task extends Model
         'task_link',
         'task_type',
         'key_range',
+        'is_teamwork',
+        'start_date',
+        'end_date',
     ];
 }

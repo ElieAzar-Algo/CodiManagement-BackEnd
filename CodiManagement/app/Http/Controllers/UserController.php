@@ -80,7 +80,58 @@ class UserController extends Controller
     public function show($id)
     {
         $data=User::where('id',$id)
+        ->with(['stage' => function ($query){
+            $query->select()->where('active_inactive', 1);
+        },])
         ->get();
+    
+        if($data)
+        {
+            return response()->json([
+                'success'=> true,
+                'message'=>'Operation Successful',
+                'data'=>$data
+            ], 200);
+            
+        }
+        else
+        {
+            return response()->json([
+                'success' => false,
+                'message' => "No data found",
+           ], 404);
+        }
+    }
+
+    public function showSkills($id)
+    {
+        $data=User::where('id',$id)
+        ->with('skill')
+        ->get(['id','user_first_name','user_last_name']);
+    
+        if($data)
+        {
+            return response()->json([
+                'success'=> true,
+                'message'=>'Operation Successful',
+                'data'=>$data
+            ], 200);
+            
+        }
+        else
+        {
+            return response()->json([
+                'success' => false,
+                'message' => "No data found",
+           ], 404);
+        }
+    }
+
+
+    public function showByCohort($id)
+    {
+        $data=User::where('cohort_code',$id)
+        ->get(['id','user_first_name','user_last_name']);
     
         if($data)
         {

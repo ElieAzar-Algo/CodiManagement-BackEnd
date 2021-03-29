@@ -20,6 +20,9 @@ class CreateTasksTable extends Migration
             $table->string('task_link')->nullable();
             $table->string('task_type')->nullable();
             $table->integer('key_range')->nullable();
+            $table->boolean('is_teamwork');
+            $table->date('start_date');
+            $table->date('end_date');
 
             $table->timestamps();
         });

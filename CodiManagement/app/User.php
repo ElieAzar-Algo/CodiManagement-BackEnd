@@ -51,10 +51,25 @@ class User extends Authenticatable implements JWTSubject
   protected $casts = [
       'email_verified_at' => 'datetime',
   ];
-  public function cohort()
-  {
+    public function cohort()
+    {
       return $this->belongsTo('App\Cohort','cohort_code','id');
-  }
+    }
+
+     public function stage()
+    {
+      return $this->hasMany('App\Stage','cohort_code','cohort_code')->with('task');
+    }
+
+    public function skill()
+    {
+      return $this->belongsToMany('App\Skill','user_skills','user_id','skill_id')
+      ->withPivot('progress');
+    }
+  
+
+
+
     public function getJWTIdentifier()
     {
         return $this->getKey();
@@ -64,6 +79,7 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
     public function setPasswordAttribute($password)
     {
         if ( !empty($password) ) {
