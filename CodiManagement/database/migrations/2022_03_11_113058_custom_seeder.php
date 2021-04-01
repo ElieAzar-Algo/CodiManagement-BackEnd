@@ -44,11 +44,11 @@ class CustomSeeder extends Migration
 
         $stages = array(
             array("cohort_code"=>1,"prairie"=>"1","stage_name"=>"Prairie","start_date"=>"2021-04-01","end_date"=>"2021-06-01","active_inactive"=>"1"),
-            array("cohort_code"=>2,"prairie"=>"1","stage_name"=>"Prairie","start_date"=>"2020-09-01","end_date"=>"2020-11-01","active_inactive"=>"0"),
+            array("cohort_code"=>2,"prairie"=>"1","stage_name"=>"Prairie","start_date"=>"2020-09-01","end_date"=>"2020-11-01","active_inactive"=>"1"),
             array("cohort_code"=>2,"prairie"=>"0","stage_name"=>"Project 1","start_date"=>"2020-11-01","end_date"=>"2020-12-01","active_inactive"=>"0"),
             array("cohort_code"=>2,"prairie"=>"0","stage_name"=>"Project 2","start_date"=>"2020-12-01","end_date"=>"2021-02-01","active_inactive"=>"0"),
             array("cohort_code"=>2,"prairie"=>"0","stage_name"=>"Project 3","start_date"=>"2021-02-01","end_date"=>"2021-03-01","active_inactive"=>"0"),
-            array("cohort_code"=>2,"prairie"=>"0","stage_name"=>"Final_project","start_date"=>"2021-03-01","end_date"=>"2021-04-01","active_inactive"=>"1"),
+            array("cohort_code"=>2,"prairie"=>"0","stage_name"=>"Final_project","start_date"=>"2021-03-01","end_date"=>"2021-04-01","active_inactive"=>"0"),
            
         );
 

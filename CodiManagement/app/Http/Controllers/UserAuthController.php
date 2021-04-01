@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\UserValidator;
+
 
 class UserAuthController extends Controller
 {
-    public function register(Request $request)
+    public function register(UserValidator $request)
     {
         $user = User::create([
              'user_first_name' => $request->user_first_name,
@@ -42,7 +44,7 @@ class UserAuthController extends Controller
        //dd($credentials);
 
         if (! $token = auth()->guard('api')->attempt($credentials)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            return response()->json(['error' => 'Incorrect Email or Password'], 401);
         }
 
         return $this->respondWithToken($token);
