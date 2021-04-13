@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Attendance;
+use App\User;
+use App\UserAttendance;
 use Illuminate\Http\Request;
 use App\Http\Requests\Attendancevalidator;
+use Illuminate\Validation\Rule;
 
 class AttendanceController extends Controller
 {
@@ -20,7 +23,7 @@ class AttendanceController extends Controller
          ->where('attendance_date','<=',$to)
          ->with(['user_attendance' => function ($query) use ($id) {
              $query->select()->where('user_id', $id);
-         }, 'admin:id,full_name,username'])
+         }])
         ->get();
         if($data)
         {
@@ -54,13 +57,44 @@ class AttendanceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Attendancevalidator $request)
+    public function store(Request $request)
     {
-        
-        $data=new Attendance();
+        // Validator::make($data, [
+        //     'attendance_date' => [
+        //         'required',
+        //          Rule::unique('attendances')->where(function ($query) use($date,$cohort) {
+        //            return $query->where('attendance_date', $date)->where('cohort_id', $cohort);
+        //          })
+        //     ],
+        // ]);
+        $data = null;
+        if(Attendance::where([ ['cohort_id', $request->cohort_id], ['attendance_date', $request->attendance_date]])
+        ->count() > 0){
+            $data=Attendance::where('cohort_id', $request->cohort_id)
+            ->where('attendance_date', $request->attendance_date)
+            ->first();
+            return response()->json([
+                'success' => false,
+                'message' => "Attendance day already exist",
+                'data'=>$data
+                
+           ], 404);
+        } else {
+            $data=new Attendance();
+        }
+       // $data=new Attendance();
         $data->fill($request->all());
         if($data->save())
+
         {
+            $students = User::where('cohort_code',$request->cohort_id)->get();
+            foreach ($students as $student){
+                $studentAttendance = new UserAttendance;
+                $studentAttendance->user_id=$student->id;
+                $studentAttendance->attendance_id=$data->id;
+                $studentAttendance->present_absent=1;
+                $studentAttendance->save();
+            }
             return response()->json([
                 'success'=> true,
                 'message'=>'Operation Successful',
@@ -82,11 +116,11 @@ class AttendanceController extends Controller
      * @param  \App\Attendance  $attendance
      * @return \Illuminate\Http\Response
      */
-    public function show($date)
+    public function show($date,$cohortId)
     {
         $data=Attendance::where('attendance_date',$date)
+        ->where('cohort_id',$cohortId)
         ->with('user_attendance')
-        ->with('admin')
         ->get();
     
         if($data)

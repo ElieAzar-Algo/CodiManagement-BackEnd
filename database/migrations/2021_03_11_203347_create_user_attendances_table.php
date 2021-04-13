@@ -17,8 +17,8 @@ class CreateUserAttendancesTable extends Migration
             $table->id();
             $table->integer('user_id');
             $table->integer('attendance_id');
-            $table->boolean('present_absent');
-            $table->boolean('excuse');
+            $table->integer('present_absent');//attendance status id
+         
             $table->integer('attendance_key_amount')->nullable();
             $table->date('verified_date')->nullable();
             $table->text('comment')->nullable();

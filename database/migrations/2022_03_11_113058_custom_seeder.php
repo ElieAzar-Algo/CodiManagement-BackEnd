@@ -61,30 +61,38 @@ class CustomSeeder extends Migration
         );
 
         $attendances = array(
-            array("attendance_date"=>"2021-03-11","admin_id"=>"1"),
-            array("attendance_date"=>"2021-03-12","admin_id"=>"1"),
-            array("attendance_date"=>"2021-03-13","admin_id"=>"1"), 
-            array("attendance_date"=>"2021-03-14","admin_id"=>"1"), 
-            array("attendance_date"=>"2021-03-15","admin_id"=>"1"), 
-            array("attendance_date"=>"2021-03-16","admin_id"=>"2"), 
-            array("attendance_date"=>"2021-03-17","admin_id"=>"2"), 
-            array("attendance_date"=>"2021-03-18","admin_id"=>"2"), 
-            array("attendance_date"=>"2021-03-19","admin_id"=>"2"), 
-            array("attendance_date"=>"2021-03-20","admin_id"=>"2"), 
-            array("attendance_date"=>"2021-03-21","admin_id"=>"2"), 
+            array("attendance_date"=>"2021-03-11","cohort_id"=>"1"),
+            array("attendance_date"=>"2021-03-12","cohort_id"=>"1"),
+            array("attendance_date"=>"2021-03-13","cohort_id"=>"1"), 
+            array("attendance_date"=>"2021-03-14","cohort_id"=>"1"), 
+            array("attendance_date"=>"2021-03-15","cohort_id"=>"1"), 
+            array("attendance_date"=>"2021-03-11","cohort_id"=>"2"), 
+            array("attendance_date"=>"2021-03-12","cohort_id"=>"2"), 
+            array("attendance_date"=>"2021-03-13","cohort_id"=>"2"), 
+            array("attendance_date"=>"2021-03-14","cohort_id"=>"2"), 
+            array("attendance_date"=>"2021-03-15","cohort_id"=>"2"), 
+            array("attendance_date"=>"2021-03-16","cohort_id"=>"2"), 
+        );
+
+        $attendance_statuses= array(
+            array("status"=>"PON",),
+            array("status"=>"POFF",),
+            array("status"=>"ANE",),
+            array("status"=>"AE",),
+            
         );
 
         $user_attendances = array(
-            array("user_id"=>1,"attendance_id"=>"1","present_absent"=>"1","excuse"=>"0","attendance_key_amount"=>"10","comment"=>"No comment"),
-            array("user_id"=>1,"attendance_id"=>"2","present_absent"=>"1","excuse"=>"0","attendance_key_amount"=>"10","comment"=>"No comment"),
-            array("user_id"=>1,"attendance_id"=>"3","present_absent"=>"0","excuse"=>"1","attendance_key_amount"=>"0","comment"=>"No comment"),
-            array("user_id"=>1,"attendance_id"=>"4","present_absent"=>"1","excuse"=>"0","attendance_key_amount"=>"10","comment"=>"No comment"),
-            array("user_id"=>1,"attendance_id"=>"5","present_absent"=>"1","excuse"=>"0","attendance_key_amount"=>"10","comment"=>"No comment"),
-            array("user_id"=>2,"attendance_id"=>"1","present_absent"=>"1","excuse"=>"0","attendance_key_amount"=>"10","comment"=>"No comment"),
-            array("user_id"=>2,"attendance_id"=>"2","present_absent"=>"1","excuse"=>"0","attendance_key_amount"=>"10","comment"=>"No comment"),
-            array("user_id"=>2,"attendance_id"=>"3","present_absent"=>"0","excuse"=>"1","attendance_key_amount"=>"0","comment"=>"No comment"),
-            array("user_id"=>2,"attendance_id"=>"4","present_absent"=>"0","excuse"=>"0","attendance_key_amount"=>"0","comment"=>"No comment"),
-            array("user_id"=>2,"attendance_id"=>"5","present_absent"=>"1","excuse"=>"0","attendance_key_amount"=>"10","comment"=>"No comment"),
+            array("user_id"=>1,"attendance_id"=>"1","present_absent"=>"1","attendance_key_amount"=>"10","comment"=>"No comment"),
+            array("user_id"=>1,"attendance_id"=>"2","present_absent"=>"1","attendance_key_amount"=>"10","comment"=>"No comment"),
+            array("user_id"=>1,"attendance_id"=>"3","present_absent"=>"0","attendance_key_amount"=>"0","comment"=>"No comment"),
+            array("user_id"=>1,"attendance_id"=>"4","present_absent"=>"1","attendance_key_amount"=>"10","comment"=>"No comment"),
+            array("user_id"=>1,"attendance_id"=>"5","present_absent"=>"1","attendance_key_amount"=>"10","comment"=>"No comment"),
+            array("user_id"=>2,"attendance_id"=>"1","present_absent"=>"1","attendance_key_amount"=>"10","comment"=>"No comment"),
+            array("user_id"=>2,"attendance_id"=>"2","present_absent"=>"1","attendance_key_amount"=>"10","comment"=>"No comment"),
+            array("user_id"=>2,"attendance_id"=>"3","present_absent"=>"0","attendance_key_amount"=>"0","comment"=>"No comment"),
+            array("user_id"=>2,"attendance_id"=>"4","present_absent"=>"0","attendance_key_amount"=>"0","comment"=>"No comment"),
+            array("user_id"=>2,"attendance_id"=>"5","present_absent"=>"1","attendance_key_amount"=>"10","comment"=>"No comment"),
             
            
         );
@@ -429,17 +437,19 @@ class CustomSeeder extends Migration
         
 
         DB::table('user__absence__requests')->insert($user__absence__requests);
+        DB::table('attendance_statuses')->insert($attendance_statuses);
         DB::table('user_attendances')->insert($user_attendances);
         DB::table('attendances')->insert($attendances);
+        DB::table('users_tasks')->insert($users_tasks);
         DB::table('branches')->insert($branches);
         DB::table('cohorts')->insert($cohorts);
         DB::table('admins')->insert($admins);
         DB::table('stages')->insert($stages);
+        DB::table('skills')->insert($skills);
         DB::table('users')->insert($users);
         DB::table('roles')->insert($roles);
         DB::table('tasks')->insert($tasks);
-        DB::table('skills')->insert($skills);
-        DB::table('users_tasks')->insert($users_tasks);
+        //attendance_statuses
     }
 
     /**

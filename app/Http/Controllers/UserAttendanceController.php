@@ -14,9 +14,27 @@ class UserAttendanceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        
+        $data=UserAttendance::where('attendance_id',$id)
+        ->with('user:id,user_first_name,user_last_name')
+        ->with('attendanceStatus')
+        ->get();
+        if($data)
+        {
+            return response()->json([
+                'success'=> true,
+                'message'=>'Operation Successful',
+                'data'=>$data
+            ], 200);
+        }
+        else
+        {
+            return response()->json([
+                'success' => false,
+                'message' => "No data found",
+           ], 404);
+        }
     }
 
     /**
@@ -104,9 +122,28 @@ class UserAttendanceController extends Controller
      * @param  \App\UserAttendance  $userAttendance
      * @return \Illuminate\Http\Response
      */
-    public function edit(UserAttendance $userAttendance)
+    public function edit(Request $request,$id)
     {
-        //
+        $data=UserAttendance::find($id);
+        if($data)
+        {
+         $data->update($request->all());
+         if ($data->save())
+         {
+            return response()->json([
+                'success'=> true,
+                'message'=>'Operation Successful',
+                'data'=>$data
+            ], 200);
+         }
+         else
+         {
+            return response()->json([
+                'success' => false,
+                'message' => "Operation Failed",
+           ], 404);
+         }
+        }
     }
 
     /**

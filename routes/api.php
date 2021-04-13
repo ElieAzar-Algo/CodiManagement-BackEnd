@@ -70,13 +70,16 @@ Route::delete('/cohort/{id}','CohortController@destroy');
 
 //AttendanceController
 Route::get('/attendance/{from}/{to}/{id}','AttendanceController@index');
-Route::get('/attendance/{date}','AttendanceController@show');
+Route::get('/attendance/{date}/{cohortId}','AttendanceController@show');
 Route::post('/attendance','AttendanceController@store');
 Route::delete('/attendance/{id}','AttendanceController@destroy');
 
 //UserAttendanceController
+Route::get('/attendance/{id}','UserAttendanceController@index');
 Route::put('/userAttendance/{id}','UserAttendanceController@update');
 Route::post('/userAttendance','UserAttendanceController@store');
+Route::patch('/userAttendance/{id}','UserAttendanceController@edit');
+
 
 //UserAbsenceRequestController
 Route::get('/UserAbsenceRequest/{requestDate}','UserAbsenceRequestController@index');
@@ -114,6 +117,9 @@ Route::patch('/skill/{id}','SkillController@edit');
 //UserSkillController pivot
 Route::patch('/skill-progress/{userId}/{skillId}','UserSkillController@edit');
 Route::post('/skill-progress','UserSkillController@store');
+
+//AttendanceStatusController
+Route::get('/attendance-status','AttendanceStatusController@index');
 
 
 

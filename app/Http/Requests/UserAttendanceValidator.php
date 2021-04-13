@@ -27,7 +27,6 @@ class UserAttendanceValidator extends FormRequest
         'user_id',
         'attendance_id'=>'required',
         'present_absent'=>'required',
-        'excuse',
         'attendance_key_amount'=>'numeric|nullable',
         'verified_date',
         'comment',

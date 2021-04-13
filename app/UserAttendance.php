@@ -12,9 +12,19 @@ class UserAttendance extends Model
         'user_id',
         'attendance_id',
         'present_absent',
-        'excuse',
+       
         'attendance_key_amount',
         'verified_date',
         'comment',
     ];
+
+    public function user()
+    {
+        return $this->hasOne('App\User','id','user_id');
+    }
+
+    public function attendanceStatus()
+    {
+        return $this->hasOne('App\AttendanceStatus','id','present_absent');
+    }
 }

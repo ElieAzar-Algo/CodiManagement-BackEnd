@@ -19,8 +19,9 @@ class CreateUsersTasksTable extends Migration
             $table->integer('user_id');
             $table->integer('admin_id');
             $table->integer('keys')->nullable();
-            $table->integer('progress')->nullable();
-            $table->string('assignment_link');
+            $table->integer('progress');
+            $table->boolean('reviewed')->nullable();
+            $table->string('assignment_link')->nullable();
             $table->timestamps();
         });
     }

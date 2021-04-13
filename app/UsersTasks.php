@@ -13,6 +13,7 @@ class UsersTasks extends Model
         'admin_id',
         'keys',
         'progress',
+        'reviewed',
         'assignment_link',
     ];
     public function user()

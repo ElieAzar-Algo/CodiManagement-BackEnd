@@ -27,9 +27,10 @@ class UsersTasksValidator extends FormRequest
             'task_id'=>'required',
             'user_id'=>'required',
             'admin_id'=>'required',
-            'progress'=>'numeric|nullable',
+            'progress'=>'numeric|required',
             'keys'=>'numeric|nullable',
-            'assignment_link'=>'required',
+            'reviewed'=>'numeric|nullable',
+            'assignment_link',
             
         ];
     }
@@ -39,8 +40,9 @@ class UsersTasksValidator extends FormRequest
         return [
             'user_id.required' => 'Choosing a student is required',
             'admin_id.required' => 'Choosing a mentor Code is required',
+            'progress.required' => 'Choosing a progress is required',
             'keys.numeric' => 'Key should be a number',
-            'assignment_link.required' => ' Assignment link is required',
+            
 
             
         ];
