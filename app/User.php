@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use App\Skill;
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -64,7 +65,17 @@ class User extends Authenticatable implements JWTSubject
     public function skill()
     {
       return $this->belongsToMany('App\Skill','user_skills','user_id','skill_id')
-      ->withPivot('progress');
+      ->withPivot('progress','stage_id');
+    }
+    // public function skill_stage_user()
+    // {
+    //     return $this->belongsToMany(Skill::class, 'user_skills');
+    // }
+
+    public function stage_skill()
+    {
+      return $this->belongsToMany('App\Stage','user_skills','user_id','stage_id');
+      
     }
   
 

@@ -107,6 +107,7 @@ class UserController extends Controller
     {
         $data=User::where('id',$id)
         ->with('skill')
+        ->with('stage_skill')
         ->get(['id','user_first_name','user_last_name']);
     
         if($data)

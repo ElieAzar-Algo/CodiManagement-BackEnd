@@ -26,6 +26,7 @@ class UserSkillValidator extends FormRequest
         return [
             'user_id'=>'required',
             'skill_id'=>'required',
+            'stage_id'=>'required',
             'progress'=>'numeric|nullable',
         ];
     }
@@ -34,6 +35,7 @@ class UserSkillValidator extends FormRequest
         return [
             'user_id.required'=>'Please Choose A Student First',
             'skill_id.required'=>' skill not found',
+            'stage_id.required'=>' Please choose a stage',
             'progress.numeric'=>' Progress must be a number',
         ];
     }

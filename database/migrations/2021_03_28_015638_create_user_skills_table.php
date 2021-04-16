@@ -17,6 +17,7 @@ class CreateUserSkillsTable extends Migration
             $table->id();
             $table->integer('skill_id');
             $table->integer('user_id');
+            $table->integer('stage_id');
             $table->integer('progress');
             $table->timestamps();
         });

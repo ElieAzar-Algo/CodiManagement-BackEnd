@@ -13,9 +13,28 @@ class UserSkillController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($userId)
     {
-        //
+        $data=UserSkill::where('user_id',$userId)
+        ->with('skill')
+        ->with('stage:id,stage_name')
+        ->with('user:id,user_first_name,user_last_name')
+        ->get();
+        if($data)
+        {
+            return response()->json([
+                'success'=> true,
+                'message'=>'Operation Successful',
+                'data'=>$data
+            ], 200);
+        }
+        else
+        {
+            return response()->json([
+                'success' => false,
+                'message' => "No data found",
+           ], 404);
+        }
     }
 
     /**

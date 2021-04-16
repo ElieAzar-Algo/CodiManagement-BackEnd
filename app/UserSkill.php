@@ -10,6 +10,23 @@ class UserSkill extends Model
     protected $fillable=[
         'skill_id',
         'user_id',
+        'stage_id',
         'progress',
     ];
+
+    public function skill()
+    {
+      return $this->belongsTo('App\Skill','skill_id','id');
+    }
+
+    public function user()
+    {
+      return $this->belongsTo('App\User','user_id','id');
+    }
+
+    public function stage()
+    {
+      return $this->belongsTo('App\Stage','stage_id','id');
+    }
 }
+

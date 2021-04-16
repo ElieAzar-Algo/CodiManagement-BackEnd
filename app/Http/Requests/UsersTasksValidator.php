@@ -42,9 +42,6 @@ class UsersTasksValidator extends FormRequest
             'admin_id.required' => 'Choosing a mentor Code is required',
             'progress.required' => 'Choosing a progress is required',
             'keys.numeric' => 'Key should be a number',
-            
-
-            
         ];
     }
 }
