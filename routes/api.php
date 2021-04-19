@@ -116,7 +116,7 @@ Route::patch('/skill/{id}','SkillController@edit');
 
 //UserSkillController pivot
 Route::get('/user-skills-stage/{userId}','UserSkillController@index');
-Route::patch('/skill-progress/{userId}/{skillId}','UserSkillController@edit');
+Route::patch('/skill-progress/{userId}/{skillId}/{stageId}','UserSkillController@edit');
 Route::post('/skill-progress','UserSkillController@store');
 
 //AttendanceStatusController

@@ -92,9 +92,9 @@ class UserSkillController extends Controller
      * @return \Illuminate\Http\Response
      */
     
-    public function edit(Request $request,$userId,$skillId)
+    public function edit(Request $request,$userId,$skillId,$stageId)
     {
-        $data=UserSkill::where('user_id',$userId)->where('skill_id',$skillId)->first();
+        $data=UserSkill::where('user_id',$userId)->where('skill_id',$skillId)->where('stage_id',$stageId)->first();
         if($data)
         {
          $data->update($request->all());
