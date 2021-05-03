@@ -37,6 +37,42 @@ class UserAttendanceController extends Controller
         }
     }
 
+/**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getAttendanceKeys($cohort)
+    {
+        $data=UserAttendance::where('attendance_key_amount','<=',0)->with(['user'=> function ($query) use ($cohort)
+        {
+            $query->select('id','user_first_name','user_last_name')->where('cohort_code', $cohort);
+        }]) 
+        ->with('attendanceStatus')
+        ->with('attendanceDay')
+        ->get();
+
+        $user=1;
+        foreach($data as $x=>$y){
+             $user= $y->user;
+        };
+        if($user!=null && $data!=null )
+        {
+            return response()->json([
+                'success'=> true,
+                'message'=>'Operation Successful',
+                'data'=>$data
+            ], 200);
+        }
+        else
+        {
+            return response()->json([
+                'success' => false,
+                'message' => "No data found",
+           ], 404);
+        }
+    }
+
     /**
      * Show the form for creating a new resource.
      *

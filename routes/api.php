@@ -122,6 +122,18 @@ Route::post('/skill-progress','UserSkillController@store');
 //AttendanceStatusController
 Route::get('/attendance-status','AttendanceStatusController@index');
 
+//AdditionalKeyController
+Route::get('/additional-keys/{cohort}','AdditionalKeyController@index');
+Route::post('/additional-keys','AdditionalKeyController@store');
+Route::patch('/additional-keys/{id}','AdditionalKeyController@edit');
+Route::delete('/additional-keys/{id}','AdditionalKeyController@destroy');
+
+//getAttendanceKeys UserAttendanceController
+Route::get('/attendance-keys/{cohort}','UserAttendanceController@getAttendanceKeys');
+//getAssignmentKeys UsersTaskController
+Route::get('/task-keys/{cohort}','UsersTasksController@getAssignmentKeys');
+
+
 
 
 Route::group(['prefix' => 'admin', 'middleware' => ['assign.guard:admins','jwt.auth']],function ()

@@ -27,4 +27,9 @@ class UserAttendance extends Model
     {
         return $this->hasOne('App\AttendanceStatus','id','present_absent');
     }
+    
+    public function attendanceDay()
+    {
+        return $this->belongsTo('App\Attendance','attendance_id','id');
+    }
 }

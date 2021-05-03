@@ -2,83 +2,50 @@
 
 namespace App\Http\Controllers;
 
-use App\UsersTasks;
-use Illuminate\Http\Request;
-use App\Http\Requests\UsersTasksValidator;
+use App\Additional_key;
+use App\UserAttendance;
+use App\Http\Requests\AdditionalKeysValidator;
 
-class UsersTasksController extends Controller
+use Illuminate\Http\Request;
+
+class AdditionalKeyController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($taskId)
-    {
-        $data=UsersTasks::where('task_id',$taskId)
-        ->with('user:id,user_first_name,user_last_name')
-        ->with('admin:id,username')
-        ->get();
-        if($data)
-        {
-            return response()->json([
-                'success'=> true,
-                'message'=>'Operation Successful',
-                'data'=>$data
-            ], 200);
-        }
-        else
-        {
-            return response()->json([
-                'success' => false,
-                'message' => "No data found",
-           ], 404);
-        }
-    }
-    public function indexUser($userId)
-    {
-        $data=UsersTasks::where('user_id',$userId)
-        ->with('admin:id,username')
-        ->with('task')
-        ->get();
-        if($data)
-        {
-            return response()->json([
-                'success'=> true,
-                'message'=>'Operation Successful',
-                'data'=>$data
-            ], 200);
-        }
-        else
-        {
-            return response()->json([
-                'success' => false,
-                'message' => "No data found",
-           ], 404);
-        }
-    }
+    public function index($cohort)
+    {   
 
-    //getAssignmentKeys
-    public function getAssignmentKeys($cohort)
-    {
-        $data=UsersTasks::where('reviewed',1)->with(['user'=> function ($query) use ($cohort)
+        $additionalKeys=Additional_key::with(['user'=> function ($query) use ($cohort)
         {
             $query->select('id','user_first_name','user_last_name')->where('cohort_code', $cohort);
         }])
-        ->with('task')
         ->get();
 
-        $user=1;
-        foreach($data as $x=>$y){
+        // $attendanceKeys=UserAttendance::with(['user'=> function ($query) use ($cohort)
+        // {
+        //     $query->select('id','user_first_name','user_last_name')->where('cohort_code', $cohort);
+        // }])
+        // ->with('attendanceDay:id,attendance_date')
+        // ->get();
+         $user=1;
+        foreach($additionalKeys as $x=>$y){
              $user= $y->user;
         };
-
-        if($user!=null && $data!=null )
+    //     foreach($attendanceKeys as $x=>$y){
+    //         $user= $y->user;
+    //    };
+ 
+        if($user!=null && $additionalKeys!=null )
         {
+
             return response()->json([
                 'success'=> true,
                 'message'=>'Operation Successful',
-                'data'=>$data
+                'data'=>$additionalKeys
+                // 'data2'=>$attendanceKeys
             ], 200);
         }
         else
@@ -87,7 +54,7 @@ class UsersTasksController extends Controller
                 'success' => false,
                 'message' => "No data found",
            ], 404);
-        }
+     }
     }
 
     /**
@@ -106,9 +73,9 @@ class UsersTasksController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UsersTasksValidator $request)
-    {
-        $data=new UsersTasks();
+    public function store(AdditionalKeysValidator $request)
+    { 
+        $data=new Additional_key();
         $data->fill($request->all());
         if ($data->save())
         {
@@ -130,10 +97,10 @@ class UsersTasksController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\UsersTasks  $usersTasks
+     * @param  \App\Additional_key  $additional_key
      * @return \Illuminate\Http\Response
      */
-    public function show(UsersTasks $usersTasks)
+    public function show(Additional_key $additional_key)
     {
         //
     }
@@ -141,12 +108,12 @@ class UsersTasksController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\UsersTasks  $usersTasks
+     * @param  \App\Additional_key  $additional_key
      * @return \Illuminate\Http\Response
      */
     public function edit(Request $request,$id)
     {
-        $data=UsersTasks::find($id);
+        $data=Additional_key::find($id);
         if($data)
         {
          $data->update($request->all());
@@ -172,10 +139,10 @@ class UsersTasksController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\UsersTasks  $usersTasks
+     * @param  \App\Additional_key  $additional_key
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, UsersTasks $usersTasks)
+    public function update(Request $request, Additional_key $additional_key)
     {
         //
     }
@@ -183,12 +150,14 @@ class UsersTasksController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\UsersTasks  $usersTasks
+     * @param  \App\Additional_key  $additional_key
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-        $data=UsersTasks::find($id);
+    {  
+        $data=Additional_key::find($id);
+        //$data->admin()->detach();
+
         if($data->delete())
         {
             return response()->json([
