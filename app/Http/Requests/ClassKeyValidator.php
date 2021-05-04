@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AdditionalKeysValidator extends FormRequest
+class ClassKeyValidator extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,20 +24,21 @@ class AdditionalKeysValidator extends FormRequest
     public function rules()
     {
         return [
-            'user_id'=>'required|numeric',
+            'cohort_id'=>'required|numeric',
+            'team'=>'required',
             'key'=>'required|numeric',
             'description'=>'required'
         ];
     }
-
     public function messages()
     {
         return [
-            'user_id.required'=>'Choosing a student is required',
-            'user_id.numeric'=>'Student ID should be a number',
-            'key.required'=>'key amount is required',
-            'key.numeric'=>'key amount should be a number',
-            'description'=>'description is required'
+            'cohort_id.required'=>'Choosing a cohort is required',
+            'cohort_id.numeric'=>'Cohort ID should be a number',
+            'team.required'=>'Team or Class name is required',
+            'key.required'=>'Keys amount is required',
+            'key.numeric'=>'Keys amount should be a number',
+            'description.required'=>'Description is required'
         ];
     }
 }

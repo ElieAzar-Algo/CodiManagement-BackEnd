@@ -50,8 +50,6 @@ Route::get('/user-skills/{id}','UserController@showSkills');
 //showByCohort
 Route::get('/user-byCohort/{id}','UserController@showByCohort');
 
-
-
 //BranchController
 Route::get('/branch','BranchController@index');
 Route::get('/branch/{id}','BranchController@show');
@@ -127,6 +125,12 @@ Route::get('/additional-keys/{cohort}','AdditionalKeyController@index');
 Route::post('/additional-keys','AdditionalKeyController@store');
 Route::patch('/additional-keys/{id}','AdditionalKeyController@edit');
 Route::delete('/additional-keys/{id}','AdditionalKeyController@destroy');
+
+//ClassKeyController
+Route::get('/class-keys/{cohort}','ClassKeyController@index');
+Route::post('/class-keys','ClassKeyController@store');
+Route::patch('/class-keys/{id}','ClassKeyController@edit');
+Route::delete('/class-keys/{id}','ClassKeyController@destroy');
 
 //getAttendanceKeys UserAttendanceController
 Route::get('/attendance-keys/{cohort}','UserAttendanceController@getAttendanceKeys');

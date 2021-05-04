@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAdditionalKeysTable extends Migration
+class CreateClassKeysTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateAdditionalKeysTable extends Migration
      */
     public function up()
     {
-        Schema::create('additional_keys', function (Blueprint $table) {
+        Schema::create('class_keys', function (Blueprint $table) {
             $table->id();
-          
-            $table->integer('user_id');
+
+            $table->integer('cohort_id');
+            $table->string('team');
             $table->integer('key');
             $table->string('description');
             $table->timestamps();
@@ -30,6 +31,6 @@ class CreateAdditionalKeysTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('additional_keys');
+        Schema::dropIfExists('class_keys');
     }
 }
