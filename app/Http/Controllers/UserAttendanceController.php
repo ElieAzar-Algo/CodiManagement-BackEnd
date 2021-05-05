@@ -44,7 +44,7 @@ class UserAttendanceController extends Controller
      */
     public function getAttendanceKeys($cohort)
     {
-        $data=UserAttendance::where('attendance_key_amount','<=',0)->with(['user'=> function ($query) use ($cohort)
+        $data=UserAttendance::where('attendance_key_amount','>',0)->with(['user'=> function ($query) use ($cohort)
         {
             $query->select('id','user_first_name','user_last_name')->where('cohort_code', $cohort);
         }]) 
