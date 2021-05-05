@@ -132,6 +132,13 @@ Route::post('/class-keys','ClassKeyController@store');
 Route::patch('/class-keys/{id}','ClassKeyController@edit');
 Route::delete('/class-keys/{id}','ClassKeyController@destroy');
 
+//KeysTargetController
+Route::get('/target-keys/{cohort}','KeysTargetController@show');
+Route::post('/target-keys','KeysTargetController@store');
+Route::patch('/target-keys/{id}','KeysTargetController@edit');
+Route::delete('/target-keys/{id}','KeysTargetController@destroy');
+
+
 //getAttendanceKeys UserAttendanceController
 Route::get('/attendance-keys/{cohort}','UserAttendanceController@getAttendanceKeys');
 //getAssignmentKeys UsersTaskController
