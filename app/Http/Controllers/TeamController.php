@@ -65,7 +65,8 @@ class TeamController extends Controller
     public function show($stageId)
     {
         $data=Team::where('stage_id', $stageId)
-        ->with('teamUsers')
+        ->with('teamUsers:id,user_first_name,user_last_name,user_avatar')
+        ->with('admin:id,username')
         ->get();
         if ($data){
             return response()->json([

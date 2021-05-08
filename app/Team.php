@@ -16,7 +16,12 @@ class Team extends Model
 
     public function teamUsers()
     {
-        return $this->belongToMany('App\User','team_users','team_id','user_id')->with('isScrumMaster');
+        return $this->belongsToMany('App\User','team_users','team_id','user_id')->withPivot('isScrumMaster');
+    }
+
+    public function admin()
+    {
+        return $this->belongsTo('App\Admin','admin_id','id');
     }
     
 }

@@ -138,6 +138,14 @@ Route::post('/target-keys','KeysTargetController@store');
 Route::patch('/target-keys/{id}','KeysTargetController@edit');
 Route::delete('/target-keys/{id}','KeysTargetController@destroy');
 
+//TeamController
+Route::get('/team/{cohort}','TeamController@show');
+Route::post('/team','TeamController@store');
+Route::patch('/team/{id}','TeamController@edit');
+Route::delete('/team/{id}','TeamController@destroy');
+
+//TeamUserController
+Route::post('/team-user','TeamUserController@store');
 
 //getAttendanceKeys UserAttendanceController
 Route::get('/attendance-keys/{cohort}','UserAttendanceController@getAttendanceKeys');
