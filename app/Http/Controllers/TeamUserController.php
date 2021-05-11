@@ -71,11 +71,24 @@ class TeamUserController extends Controller
      * @param  \App\TeamUser  $teamUser
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request,$id)
+    public function edit(Request $request,$id,$teamId)
     {
-        
-       $data=TeamUser::find($id);
-       if ($data)
+        $data=TeamUser::find($id);
+       $scrum=TeamUser::where('team_id',$teamId)
+       ->where('isScrumMaster',1)
+       ->first();
+       if($scrum && $data){
+           $scrum->isScrumMaster=0;
+           $data->update($request->all());
+           $scrum->save();
+           $data->save();
+           return response()->json([
+            'success'=> true,
+            'message'=>'Operation Successful',
+            'data'=>$data
+        ], 200);
+       }
+       elseif ($data)
        {
         $data->update($request->all());
         if($data->save())
@@ -84,7 +97,6 @@ class TeamUserController extends Controller
                 'success'=> true,
                 'message'=>'Operation Successful',
                 'data'=>$data
-                // 'data2'=>$attendanceKeys
             ], 200);
         }else {
 

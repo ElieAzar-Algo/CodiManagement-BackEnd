@@ -49,6 +49,8 @@ Route::delete('/user/{id}','UserController@destroy');
 Route::get('/user-skills/{id}','UserController@showSkills');
 //showByCohort
 Route::get('/user-byCohort/{id}','UserController@showByCohort');
+//disableCohortStudents
+Route::patch('/disable-cohort-students/{cohortId}','UserController@disableCohortStudents');
 
 //BranchController
 Route::get('/branch','BranchController@index');
@@ -146,6 +148,10 @@ Route::delete('/team/{id}','TeamController@destroy');
 
 //TeamUserController
 Route::post('/team-user','TeamUserController@store');
+Route::patch('/team-user/{id}/{teamId}','TeamUserController@edit');
+Route::delete('/team-user/{id}','TeamUserController@destroy');
+
+
 
 //getAttendanceKeys UserAttendanceController
 Route::get('/attendance-keys/{cohort}','UserAttendanceController@getAttendanceKeys');

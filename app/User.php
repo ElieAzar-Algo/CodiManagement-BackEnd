@@ -59,7 +59,7 @@ class User extends Authenticatable implements JWTSubject
 
      public function stage()
     {
-      return $this->hasMany('App\Stage','cohort_code','cohort_code')->with('task');
+      return $this->belongsTo('App\Stage','cohort_code','cohort_code')->with('task');
     }
 
     public function skill()

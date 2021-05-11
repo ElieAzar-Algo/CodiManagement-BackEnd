@@ -83,7 +83,7 @@ class UserController extends Controller
         ->with(['stage' => function ($query){
             $query->select()->where('active_inactive', 1);
         },])
-        ->get();
+        ->first();
     
         if($data)
         {
@@ -233,6 +233,30 @@ class UserController extends Controller
                 'message' => "Operation Failed",
            ], 404);
          }
+        }
+    }
+
+    public function disableCohortStudents(Request $request,$cohortId)
+    {
+        $data=User::where('cohort_code', $cohortId)->get();
+        if($data){
+         foreach ($data as $d){ 
+            $d->active_inactive=!$d->active_inactive;
+            $d->save();
+         }  
+            return response()->json([
+                'success'=> true,
+                'message'=>'Operation Successful',
+                'data'=>$data
+            ], 200);
+        }else
+    
+         {
+            return response()->json([
+                'success' => false,
+                'message' => "Operation Failed",
+           ], 404);
+         
         }
     }
 

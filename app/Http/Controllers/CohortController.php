@@ -36,7 +36,8 @@ class CohortController extends Controller
 
     public function onlyCohorts()
     { 
-        $data=Cohort::all();
+        $date=date("Y-m-d");
+        $data=Cohort::where('end_date',">",$date)->get();
         if($data)
         {
             return response()->json([

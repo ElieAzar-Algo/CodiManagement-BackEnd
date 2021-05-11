@@ -25,7 +25,7 @@ class SkillValidator extends FormRequest
     {
         return [
             'name'=>'required',
-            'skill_family'=>'required',
+            'skill_family',
         ];
     }
 
@@ -33,7 +33,6 @@ class SkillValidator extends FormRequest
     {
         return [
             'name.required'=>'name is required',
-            'skill_family.required'=>' skill family is required',
         ];
     }
 }

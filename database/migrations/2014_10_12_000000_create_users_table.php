@@ -30,7 +30,7 @@ class CreateUsersTable extends Migration
             $table->string('user_address');
             $table->string('user_avatar');
             $table->string('user_discord_id');
-            $table->integer('user_security_level');
+            $table->integer('user_security_level')->nullable();
             $table->boolean('active_inactive');
             
             $table->rememberToken();

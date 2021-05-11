@@ -27,7 +27,7 @@ class TeamValidator extends FormRequest
             'stage_id'=>'required|numeric',
             'admin_id'=>'required|numeric',
             'name'=>'required',
-            'max_members'=>'required|numeric',
+            'max_members',
         ];
     }
 
@@ -42,8 +42,8 @@ class TeamValidator extends FormRequest
 
             'name.required'=>'name is required',
 
-            'max_members.required'=>'Max members is required',
-            'max_members.numeric'=>'Max members should be a number',
+            // 'max_members.required'=>'Max members is required',
+            // 'max_members.numeric'=>'Max members should be a number',
 
         ];
     }

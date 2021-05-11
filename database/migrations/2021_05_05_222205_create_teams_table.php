@@ -18,7 +18,7 @@ class CreateTeamsTable extends Migration
             $table->integer('stage_id');
             $table->integer('admin_id');
             $table->string('name');
-            $table->integer('max_members');
+            $table->integer('max_members')->nullable();
             $table->timestamps();
         });
     }

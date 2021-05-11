@@ -93,6 +93,7 @@ class AttendanceController extends Controller
                 $studentAttendance->user_id=$student->id;
                 $studentAttendance->attendance_id=$data->id;
                 $studentAttendance->present_absent=1;
+                $studentAttendance->attendance_key_amount=1;
                 $studentAttendance->save();
             }
             return response()->json([
