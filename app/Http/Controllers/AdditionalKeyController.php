@@ -15,10 +15,10 @@ class AdditionalKeyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($cohort)
+    public function index($cohort, $stage)
     {   
 
-        $additionalKeys=Additional_key::with(['user'=> function ($query) use ($cohort)
+        $additionalKeys=Additional_key::where('stage_id',$stage)->with(['user'=> function ($query) use ($cohort)
         {
             $query->select('id','user_first_name','user_last_name')->where('cohort_code', $cohort);
         }])

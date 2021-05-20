@@ -59,26 +59,39 @@ class UsersTasksController extends Controller
     }
 
     //getAssignmentKeys
-    public function getAssignmentKeys($cohort)
+    public function getAssignmentKeys($cohort,$stage) 
     {
+    
         $data=UsersTasks::where('reviewed',1)->with(['user'=> function ($query) use ($cohort)
         {
             $query->select('id','user_first_name','user_last_name')->where('cohort_code', $cohort);
         }])
-        ->with('task')
+     
+        ->with(['task'=> function ($que) use ($stage)
+        {
+            $que->select('id','task_name')->where('stage_id', $stage);
+        }]) 
         ->get();
-
-        $user=1;
+        // dd($data);
+        $task=[];
+        $user=[];
+        $newData=[];
         foreach($data as $x=>$y){
-             $user= $y->user;
+            
+            $user= $y->user;
+            $task=$y->task;
+            if($task){
+                array_push($newData,$data[$x]);
+            }    
         };
-
-        if($user!=null && $data!=null )
+       //dd($newData);
+       
+        if($newData)
         {
             return response()->json([
                 'success'=> true,
                 'message'=>'Operation Successful',
-                'data'=>$data
+                'data'=>$newData
             ], 200);
         }
         else

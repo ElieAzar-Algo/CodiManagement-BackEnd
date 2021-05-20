@@ -17,6 +17,7 @@ class CreateClassKeysTable extends Migration
             $table->id();
 
             $table->integer('cohort_id');
+            $table->integer('stage_id');
             $table->string('team');
             $table->integer('key');
             $table->string('description');

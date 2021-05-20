@@ -25,6 +25,7 @@ class AdditionalKeysValidator extends FormRequest
     {
         return [
             'user_id'=>'required|numeric',
+            'stage_id'=>'required|numeric',
             'key'=>'required|numeric',
             'description'=>'required'
         ];
@@ -35,6 +36,9 @@ class AdditionalKeysValidator extends FormRequest
         return [
             'user_id.required'=>'Choosing a student is required',
             'user_id.numeric'=>'Student ID should be a number',
+            'stage_id.required'=>'Choosing a stage is required',
+            'stage_id.numeric'=>'Stage ID should be a number',
+            
             'key.required'=>'key amount is required',
             'key.numeric'=>'key amount should be a number',
             'description'=>'description is required'

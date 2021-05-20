@@ -17,6 +17,7 @@ class CreateAdditionalKeysTable extends Migration
             $table->id();
           
             $table->integer('user_id');
+            $table->integer('stage_id');
             $table->integer('key');
             $table->string('description');
             $table->timestamps();

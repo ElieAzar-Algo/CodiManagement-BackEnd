@@ -9,6 +9,7 @@ class Additional_key extends Model
     protected $table ='additional_keys';
     protected $fillable=[
         'user_id',
+        'stage_id',
         'key',
         'description'
     ];

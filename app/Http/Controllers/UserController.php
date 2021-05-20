@@ -6,10 +6,25 @@ use App\User;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\UserValidator;
+use File;
 
 class UserController extends Controller
 {
+
+
+    public function imageDelete($oldImage)
+    {
+
+        if(File::exists(public_path('storage/images/'.$oldImage)))
+        {
+            File::delete(public_path('storage/images/'.$oldImage));
+            return true;
+        }else{
+            return false;
+        }
+    }
     /**
+     * 
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -50,10 +65,16 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserValidator $request)
+    public function store(Request $request)
     {
         $data=new User();
         $data->fill($request->all());
+        // dd($request);
+        if($image=$request->file('user_avatar')){
+            $image=$request->user_avatar;
+            $image->store('public/image/');
+            $data->user_avatar=$image->hashName();
+        }
         if ($data->save())
         {
             return response()->json([

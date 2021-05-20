@@ -24,7 +24,7 @@ class KeysTargetValidator extends FormRequest
     public function rules()
     {
         return [
-            'cohort_id'=>"required|numeric|unique:keys_targets",
+            'stage_id'=>"required|numeric|unique:keys_targets",
             'target'=>'required|numeric'
         ];
     }
@@ -32,9 +32,9 @@ class KeysTargetValidator extends FormRequest
     public function messages()
     {
         return [
-            'cohort_id.required'=>"Choosing a cohort is required",
-            'cohort_id.numeric'=>"Cohort ID should be a number",
-            'cohort_id.unique'=>"Cohort's target already exist",
+            'stage_id.required'=>"Choosing a stage is required",
+            'stage_id.numeric'=>"Stage ID should be a number",
+            'stage_id.unique'=>"Stage's target already exist",
             'target.required'=>'Target is required',
             'target.numeric'=>'Target should be a number',
         ];

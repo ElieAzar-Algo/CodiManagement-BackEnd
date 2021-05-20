@@ -60,9 +60,9 @@ class KeysTargetController extends Controller
      * @param  \App\KeysTarget  $keysTarget
      * @return \Illuminate\Http\Response
      */
-    public function show($cohortId)
+    public function show($stageId)
     {
-        $data=KeysTarget::where('cohort_id', $cohortId)->first();
+        $data=KeysTarget::where('stage_id', $stageId)->first();
         if ($data){
             return response()->json([
                 'success'=>true,

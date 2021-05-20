@@ -123,19 +123,19 @@ Route::post('/skill-progress','UserSkillController@store');
 Route::get('/attendance-status','AttendanceStatusController@index');
 
 //AdditionalKeyController
-Route::get('/additional-keys/{cohort}','AdditionalKeyController@index');
+Route::get('/additional-keys/{cohort}/{stage}','AdditionalKeyController@index');
 Route::post('/additional-keys','AdditionalKeyController@store');
 Route::patch('/additional-keys/{id}','AdditionalKeyController@edit');
 Route::delete('/additional-keys/{id}','AdditionalKeyController@destroy');
 
 //ClassKeyController
-Route::get('/class-keys/{cohort}','ClassKeyController@index');
+Route::get('/class-keys/{cohort}/{stage}','ClassKeyController@index');
 Route::post('/class-keys','ClassKeyController@store');
 Route::patch('/class-keys/{id}','ClassKeyController@edit');
 Route::delete('/class-keys/{id}','ClassKeyController@destroy');
 
 //KeysTargetController
-Route::get('/target-keys/{cohort}','KeysTargetController@show');
+Route::get('/target-keys/{stage}','KeysTargetController@show');
 Route::post('/target-keys','KeysTargetController@store');
 Route::patch('/target-keys/{id}','KeysTargetController@edit');
 Route::delete('/target-keys/{id}','KeysTargetController@destroy');
@@ -154,9 +154,9 @@ Route::delete('/team-user/{id}','TeamUserController@destroy');
 
 
 //getAttendanceKeys UserAttendanceController
-Route::get('/attendance-keys/{cohort}','UserAttendanceController@getAttendanceKeys');
+Route::get('/attendance-keys/{cohort}/{stage}','UserAttendanceController@getAttendanceKeys');
 //getAssignmentKeys UsersTaskController
-Route::get('/task-keys/{cohort}','UsersTasksController@getAssignmentKeys');
+Route::get('/task-keys/{cohort}/{stage}','UsersTasksController@getAssignmentKeys');
 
 
 

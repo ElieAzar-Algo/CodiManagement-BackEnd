@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\UserAttendance;
+use App\Stage;
+
 use Illuminate\Http\Request;
 use App\Http\Requests\UserAttendanceValidator;
 use Illuminate\Foundation\Http\FormRequest;
@@ -42,34 +44,47 @@ class UserAttendanceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getAttendanceKeys($cohort)
+    public function getAttendanceKeys($cohort,$stage)
+
     {
+        $stageData=Stage::where('id',$stage)->first();
         $data=UserAttendance::where('attendance_key_amount','>',0)->with(['user'=> function ($query) use ($cohort)
         {
             $query->select('id','user_first_name','user_last_name')->where('cohort_code', $cohort);
         }]) 
         ->with('attendanceStatus')
-        ->with('attendanceDay')
-        ->get();
+        ->with(['attendanceDay'=> function ($query) use ($stageData)
+        {
+            $query->select('id','attendance_date')->where('attendance_date',">=",$stageData->start_date)
+            ->where('attendance_date',"<=",$stageData->end_date);
+        }]) 
+        ->paginate();
 
-        $user=1;
+        $attendanceDay=[];
+        foreach($data as $a=>$b){
+            $attendanceDay=$b->attendanceDay;
+        };
+
+        $user=[];
         foreach($data as $x=>$y){
              $user= $y->user;
         };
-        if($user!=null && $data!=null )
+        // dd($user, $data);
+        if($data==null || $user==null || $attendanceDay==null)
+        {
+            return response()->json([
+                'success' => false,
+                'message' => "No data found",
+           ], 404);
+            
+        }
+        else
         {
             return response()->json([
                 'success'=> true,
                 'message'=>'Operation Successful',
                 'data'=>$data
             ], 200);
-        }
-        else
-        {
-            return response()->json([
-                'success' => false,
-                'message' => "No data found",
-           ], 404);
         }
     }
 

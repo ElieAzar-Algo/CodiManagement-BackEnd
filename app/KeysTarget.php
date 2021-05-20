@@ -8,7 +8,7 @@ class KeysTarget extends Model
 {
     protected $table="keys_targets";
     protected $fillable=[
-        'cohort_id',
+        'stage_id',
         'target'
     ];
 }

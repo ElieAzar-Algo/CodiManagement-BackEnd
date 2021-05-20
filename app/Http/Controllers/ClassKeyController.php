@@ -13,9 +13,9 @@ class ClassKeyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($cohortId)
+    public function index($cohortId, $stageId)
     {
-        $data=ClassKey::where('cohort_id', $cohortId)
+        $data=ClassKey::where('cohort_id', $cohortId)->where('stage_id', $stageId)
         ->get();
         if ($data){
 

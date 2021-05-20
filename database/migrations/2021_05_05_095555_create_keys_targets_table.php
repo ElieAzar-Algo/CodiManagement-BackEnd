@@ -15,7 +15,7 @@ class CreateKeysTargetsTable extends Migration
     {
         Schema::create('keys_targets', function (Blueprint $table) {
             $table->id();
-            $table->integer('cohort_id')->unique();
+            $table->integer('stage_id')->unique();
             $table->integer('target');
             $table->timestamps();
         });

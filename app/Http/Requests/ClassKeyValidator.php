@@ -25,6 +25,7 @@ class ClassKeyValidator extends FormRequest
     {
         return [
             'cohort_id'=>'required|numeric',
+            'stage_id'=>'required|numeric',
             'team'=>'required',
             'key'=>'required|numeric',
             'description'=>'required'
@@ -35,6 +36,9 @@ class ClassKeyValidator extends FormRequest
         return [
             'cohort_id.required'=>'Choosing a cohort is required',
             'cohort_id.numeric'=>'Cohort ID should be a number',
+            'stage_id.required'=>'Choosing a stage is required',
+            'stage_id.numeric'=>'Stage ID should be a number',
+
             'team.required'=>'Team or Class name is required',
             'key.required'=>'Keys amount is required',
             'key.numeric'=>'Keys amount should be a number',

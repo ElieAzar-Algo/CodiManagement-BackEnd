@@ -36,7 +36,7 @@ class UserValidator extends FormRequest
                 'user_gender'=>'required',
                 'user_city'=>'required',
                 'user_address'=>'required',
-                'user_avatar',
+                'user_avatar'=>'nullable|mimes:jpeg,png,jpg,gif,svg|max:2048',
                 'user_discord_id'=>'required',
                 'user_security_level',
                 'active_inactive'=>'required|numeric',
