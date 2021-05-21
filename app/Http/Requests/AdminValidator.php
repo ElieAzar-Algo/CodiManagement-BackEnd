@@ -13,7 +13,7 @@ class AdminValidator extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,32 @@ class AdminValidator extends FormRequest
     public function rules()
     {
         return [
-            //
+
+               'role_id'=>'required|numeric',
+               'branch_id'=>'required|numeric',
+                'full_name'=>'required', 
+                'username'=>'required', 
+                'email'=>'required|email|unique:users', 
+                'password'=>'required', 
+                'description'=>'required', 
+                'active_inactive', 
+                
+        ];
+    }
+    public function  messages()
+    {
+        return [
+
+            'role_id.required' => 'Choosing a role is required',
+            'branch_id.required' => 'Choosing a branch is required',
+            'full_name.required' => 'Full Name is required',
+            'username.required' => 'username is required',
+            'email.required' => 'Email is required',
+            'password.required' => 'Password is required',
+            'description.required'=>'Description is required',
+            
+            'email.email' => 'Email should be example@mail.com',
+            'email.unique' => 'This Email already exist ',
         ];
     }
 }

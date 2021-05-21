@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Admin;
 use Illuminate\Http\Request;
+use App\Http\Requests\AdminValidator;
+
 
 class AdminAuthController extends Controller
 {
-    public function register(Request $request)
+    public function register(AdminValidator $request)
     {
         $admin = Admin::create([
              'full_name'=> $request->full_name,

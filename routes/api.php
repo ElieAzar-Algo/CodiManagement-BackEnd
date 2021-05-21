@@ -20,7 +20,6 @@ Route::post('/user/login', 'UserAuthController@login');
 Route::post('/user/logout', 'UserAuthController@logout');
 
 //AdminAuthController
-Route::post('/admin/register', 'AdminAuthController@register');
 Route::post('/admin/login', 'AdminAuthController@login');
 Route::post('/admin/logout', 'AdminAuthController@logout');
 
@@ -28,13 +27,12 @@ Route::post('/admin/logout', 'AdminAuthController@logout');
 Route::resource('/role','RoleController');
 
 //AdminController
-Route::get('/admin','AdminController@index');
+Route::get('/admin/{branch}','AdminController@index');
 //allAdmins
 Route::get('/all-admins','AdminController@allAdmins');
 Route::get('/admin/{id}','AdminController@show');
 Route::get('/searchAdmin/{name}','AdminController@search');
-Route::post('/admin','AdminController@store');
-Route::put('/admin/{id}','AdminController@update');
+Route::patch('/admin/{id}','AdminController@update');
 Route::delete('/admin/{id}','AdminController@destroy');
 
 //UserController
@@ -163,6 +161,9 @@ Route::get('/task-keys/{cohort}/{stage}','UsersTasksController@getAssignmentKeys
 
 Route::group(['prefix' => 'admin', 'middleware' => ['assign.guard:admins','jwt.auth']],function ()
 {
+Route::post('/create-admin','AdminController@store');
+Route::post('/admin/register', 'AdminAuthController@register');
+
   
     
 });

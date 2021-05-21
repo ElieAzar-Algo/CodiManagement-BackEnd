@@ -63,6 +63,16 @@ class Admin extends Authenticatable implements JWTSubject
             $this->attributes['password'] = bcrypt($password);
         }
     }    
+
+    public function branch()
+    {
+      return $this->belongsTo('App\Branch','branch_id','id');
+    }
+
+    public function role()
+    {
+      return $this->hasOne('App\Role','id','role_id');
+    }
   
 }
 

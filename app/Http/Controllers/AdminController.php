@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Admin;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\AdminValidator;
 
 class AdminController extends Controller
 {
@@ -13,9 +14,10 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($branchId)
     {
         $data=Admin::where('active_inactive', 1)
+        ->where('branch_id',$branchId)
         ->get(['id','username']);
         if($data)
         {
@@ -69,7 +71,7 @@ class AdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AdminValidator $request)
     {
         $data=new Admin();
         $data->fill($request->all());
@@ -99,7 +101,9 @@ class AdminController extends Controller
     public function show($id)
     {
         $data=Admin::where('id',$id)
-        ->get();
+        ->with('branch:id,branch_name')
+        ->with('role')
+        ->first();
     
         if($data)
         {
